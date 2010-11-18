@@ -1,0 +1,196 @@
+\documentclass[12pt]{article}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\lstset{
+language=Ruby,                  % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                  % adds a frame around the code
+tabsize=2,	                    % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+}
+
+\title{INFO 4300: HW II} 
+\author{Jason Marcell} 
+\date{October 9th, 2010}
+
+\begin{document} 
+\maketitle 
+\newpage
+\section{Introduction} % (fold)
+\label{sec:introduction}
+The object of this assignment was to use singular value decomposition for a recommendation engine and a search engine.
+% section introduction (end)
+\section{A Small-scale Recommender System} % (fold)
+\label{sec:a_small_scale_recommender_system}
+\subsection{Singular Values} % (fold)
+\label{sub:singular_values}
+\begin{lstlisting}
+  26.885239
+  23.857636
+  21.676541
+   3.876193
+   2.600910
+   0.804787
+   0.663664
+   0.496925
+   0.000000
+   0.000000
+\end{lstlisting}
+Above are listed the singular values. I chose to keep the top three because there is a sharp drop off after those three.
+% subsection singular_values (end)
+\subsection{Independent Parameters} % (fold)
+\label{sub:independent_parameters}
+In order to compute the number of independent parameters, we use this equation from slide 8 of Lecture 11's lecture notes:
+\begin{equation}
+  r(M+N)−r^2 
+\end{equation}
+Given that we have a $20x10$ matrix and we are taking $r=3$ singular values, we obtain $3(20+10)-3^2 = 81$ independent parameters.
+% subsection independent_parameters (end)
+\pagebreak
+\subsection{Recommendations to Existing Users} % (fold)
+\label{sub:recommendations_to_existing_users}
+By comparing $X_k$ to the original $X$, what are the three strongest recommendations you would make to the existing users? (i.e., examine largest values of $X_k-X$)\newline
+Here we have a listing of $X_k-X$. (I have scaled up by a factor of 100 so that larger values stand out more heavily in the listing):
+\begin{lstlisting}
+  2   -5    2   -3   12    1   -2   1  -3   1
+-54  -12  -54  -32  -14   18  223 -64 -32  21
+  7    3    7    4    2   -2  -30   6   4  -2
+-44  -27  -44  -29  -14    6  199  12 -29   2
+  2   -7    2   -4   18    1   -2   1  -4   1
+ 21    8   21   13    7   -7  -90  17  13  -6
+  2   -7    2   -4   18    1   -2   1  -4   1
+  5  -25    5   -0   -1   17    3  -4  -0  -3
+  6  -34    6   -0   -2   23    4  -6  -0  -4
+  4  -15    4   -0   -1  -36    2  15  -0  36
+  5  -25    5   -0   -1   17    3  -4  -0  -3
+ 28   11   28   17    9   -9 -120  22  17  -8
+  3  -13    3   -3   12    6   -1  -1  -3  -0
+ 14    5   14    8    4   -5  -60  11   8  -4
+  1   -2    1   -1    6    0   -1   0  -1   0
+  1  -10    1   16  -65    3    3   3  16   3
+-47  232  -47    2    5  -43  -23 -29   2 -55
+ 21    8   21   13    7   -7  -90  17  13  -6
+ 10  -14   10    4    1    9  -28   3   4  -4
+  3  -10    3   -6   24    1   -3   2  -6   2
+\end{lstlisting}
+So, for each row, examining the top three values, we have recommendations for each user:
+\begin{enumerate}
+  \item 5, 1, 2
+  \item 7, 10, 6
+  \item 1, 3, 8
+  \item 7, 8, 6
+  \item 5, 1, 3
+  \item 1, 3, 8
+  \item 5, 1, 3
+  \item 5, 1, 3
+  \item 10, 8, 1
+  \item 6, 1, 3
+  \item 1, 3, 8
+  \item 5, 6, 1
+  \item 1, 3, 4
+  \item 5, 1, 3
+  \item 4, 9, 6
+  \item 5, 4, 9
+  \item 1, 3, 8
+  \item 1, 3, 6
+  \item 5, 1, 3
+\end{enumerate}
+% subsection recommendations_to_existing_users (end)
+\subsection{Recommendations to New Users} % (fold)
+\label{sub:recommendations_to_new_users}
+Now we consider four new users. The last user is a user we know nothing about. We model this by giving that user uniform preference.
+\begin{verbatim}
+  newuser1 = [6 0 0 0 0 0 0 0 0 0]
+  newuser2 = [0 0 0 0 0 2 0 0 0 4]
+  newuser3 = [0 3 0 0 0 0 0 3 0 0]
+  newuser4 = [1 1 1 1 1 1 1 1 1 1] 
+\end{verbatim}
+\pagebreak
+For each user, we perform the following steps
+\begin{itemize}
+  \item Right multiply the vector by $V$ to transform to feature space.
+  \item Zero out the entries corresponding to the truncation of $\Sigma$.
+  \item Transform the result back to user coordinates by right multiplying by $V^T$
+  \item Compare with the initial user vector.
+\end{itemize}
+
+\begin{lstlisting}
+ User 1
+ 6.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00
+ 2.47  1.01  2.47 -0.17 -0.10 -0.16  1.19 -0.14 -0.17 -0.25
+ 
+ User 2
+ 0.00  0.00  0.00  0.00  0.00  2.00  0.00  0.00  0.00  4.00
+-0.22  1.08 -0.22 -0.02  0.07  2.43 -0.13  1.22 -0.02  2.44
+
+ User 3
+ 0.00  3.00  0.00  0.00  0.00  0.00  0.00  3.00  0.00  0.00
+ 0.43  0.75  0.43 -0.00  0.04  1.16  0.21  0.57 -0.00  1.15
+ 
+ User 4
+ 1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00
+ 1.03  1.00  1.03  1.13  0.60  1.13  0.88  0.58  1.13  1.10
+\end{lstlisting}
+In the above listing we see each user vector and their corresponding result after performing the above-stated steps. We arrive at the following recommendations by observing the top three results for each user (disregarding songs they have already rated).
+\begin{itemize}
+  \item User 1: 3, 7, 2
+  \item User 2: 10, 8, 2
+  \item User 3: 6, 10, 1
+  \item User 4: 4, 6, 9
+\end{itemize}
+% subsection recommendations_to_new_users (end)
+% section a_small_scale_recommender_system (end)
+\pagebreak
+\section{A Search Engine That Indexes Full Text Using Latent Semantic Indexing} % (fold)
+\label{sec:a_search_engine_that_indexes_full_text_using_latent_semantic_indexing}
+For this part, I created a term-document matrix consisting of the tf.idf scores of each word. I then performed singular value decomposition, keeping the top two singular values and recomputed by matrix as $C_k$. Then, for the given query, I create a query vector. The query vector is a very long, sparse vector that is mostly zero's, but contains one's in the slots where the words form the query correspond to the entries. In order to score each document, I take the inner product of the query vector with the column vector corresponding to each document. I then sort the documents by score and return the top three (if available). If no documents scored greater than zero then nothing is returned.
+
+\emph{\textbf{NOTE!}} In order to get this part to work \emph{reasonably} I had to vastly decrease the corpus. I limited my corpus to only 6 files and I truncated the length of the files in half. As it is, the indexing takes a while, but with the full 30-document corpus it is unreasonably slow.
+% section a_search_engine_that_indexes_full_text_using_latent_semantic_indexing (end)
+\section{Instructions for Running} % (fold)
+\label{sec:instructions_for_running}
+\subsection{Part 1} % (fold)
+\label{sub:part_1}
+The results from part one were obtained from the unit tests located in \texttt{svd-test.rb}. You can run the unit test like this \texttt{
+ruby svd-test.rb --name test\_homework\_part\_1}.
+% subsection part_1 (end)
+\pagebreak
+\subsection{Part 2} % (fold)
+\label{sub:part_2}
+Just run \texttt{ruby main.rb}. You'll see a prompt asking you to wait while it indexes. Then when it says ``Ready!'' you can type your query just like in the previous assignment. The program ends when you type ``ZZZ''
+\begin{lstlisting}
+$ ruby main.rb 
+Indexing. Please wait...
+.
+.
+.
+.
+.
+.
+Ready!
+vector
+development
+./test/file06.txt 0.810614700199872
+... competitive fund by: Establishing a fast-track competitive grant process through the EDA 4 To build l ...
+./test/file05.txt 0.620749063959116
+... ver said Solutions to health issues here on Earth have the potential to benefit space explorers of th ...
+\end{lstlisting}
+% subsection part_2 (end)
+% section instructions_for_running (end)
+\section{References} % (fold)
+\label{sec:references}
+\begin{itemize}
+  \item Formulas were used as per definition from the class website: \url{http://www.infosci.cornell.edu/Courses/info4300/2010fa/index.html}
+  \item I collaborated with Karan Kurani for this project.
+\end{itemize}
+% section references (end)
+\end{document}

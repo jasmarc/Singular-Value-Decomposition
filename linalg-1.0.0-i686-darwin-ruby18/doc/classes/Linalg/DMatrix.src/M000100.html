@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>replace_row (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: replace_row(i, v)
+ *
+ * replace the +i+-th row with the row vector +v+.
+ *
+ */
+VALUE rb_dmatrix_replace_row( VALUE self, VALUE ri, VALUE rv )
+{
+    DMatrix* a ;
+    integer i = (integer)NUM2INT(ri) ;
+    DMatrix* v ;
+
+    get_dmatrix(a, self) ;
+    get_dmatrix(v, rv) ;
+    
+    if( v-&gt;vsize != 1 ||
+        v-&gt;hsize != a-&gt;hsize )
+    {
+        raise_dim_error() ;
+    }
+    
+    dmatrix_replace_minor(a, i, 0, v) ;
+    return self ;
+}</pre>
+</body>
+</html>

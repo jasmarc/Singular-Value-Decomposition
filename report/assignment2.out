@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{A Small-scale Recommender System}{}
+\BOOKMARK [2][-]{subsection.2.1}{Singular Values}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Independent Parameters}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Recommendations to Existing Users}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Recommendations to New Users}{section.2}
+\BOOKMARK [1][-]{section.3}{A Search Engine That Indexes Full Text Using Latent Semantic Indexing}{}
+\BOOKMARK [1][-]{section.4}{Instructions for Running}{}
+\BOOKMARK [2][-]{subsection.4.1}{Part 1}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Part 2}{section.4}
+\BOOKMARK [1][-]{section.5}{References}{}

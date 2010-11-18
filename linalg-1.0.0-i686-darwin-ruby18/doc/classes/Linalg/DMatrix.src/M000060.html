@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>schur (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/linalg/dmatrix/schur.rb, line 21</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">schur</span> <span class="ruby-comment cmt"># :yields: z, t, real, imag</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">DimensionError</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">square?</span>
+         <span class="ruby-identifier">jobvs</span> = <span class="ruby-constant">Char</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;V&quot;</span>)
+         <span class="ruby-identifier">sort</span> = <span class="ruby-constant">Char</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;N&quot;</span>)
+         <span class="ruby-identifier">select</span> = <span class="ruby-constant">XData</span><span class="ruby-operator">::</span><span class="ruby-constant">NULL</span>
+         <span class="ruby-identifier">n</span> = <span class="ruby-constant">XInteger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">vsize</span>)
+         <span class="ruby-identifier">a</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clone</span>
+         <span class="ruby-identifier">lda</span> = <span class="ruby-identifier">n</span>
+         <span class="ruby-identifier">sdim</span> = <span class="ruby-constant">XInteger</span>.<span class="ruby-identifier">new</span>
+         <span class="ruby-identifier">wr</span> = <span class="ruby-constant">DMatrix</span>.<span class="ruby-identifier">reserve</span>(<span class="ruby-identifier">n</span>.<span class="ruby-identifier">value</span>, <span class="ruby-value">1</span>)
+         <span class="ruby-identifier">wi</span> = <span class="ruby-constant">DMatrix</span>.<span class="ruby-identifier">reserve</span>(<span class="ruby-identifier">n</span>.<span class="ruby-identifier">value</span>, <span class="ruby-value">1</span>)
+         <span class="ruby-identifier">vs</span> = <span class="ruby-constant">DMatrix</span>.<span class="ruby-identifier">reserve</span>(<span class="ruby-identifier">n</span>.<span class="ruby-identifier">value</span>, <span class="ruby-identifier">n</span>.<span class="ruby-identifier">value</span>)
+         <span class="ruby-identifier">ldvs</span> = <span class="ruby-identifier">n</span>
+         <span class="ruby-identifier">work</span> = <span class="ruby-constant">DReal</span>.<span class="ruby-identifier">new</span>  <span class="ruby-comment cmt"># query</span>
+         <span class="ruby-identifier">lwork</span> = <span class="ruby-constant">XInteger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">-1</span>) <span class="ruby-comment cmt"># query</span>
+         <span class="ruby-identifier">bwork</span> = <span class="ruby-constant">XData</span><span class="ruby-operator">::</span><span class="ruby-constant">NULL</span>
+         <span class="ruby-identifier">info</span> = <span class="ruby-constant">XInteger</span>.<span class="ruby-identifier">new</span>
+         
+         <span class="ruby-comment cmt"># query</span>
+         <span class="ruby-constant">Lapack</span>.<span class="ruby-identifier">dgees</span>(<span class="ruby-identifier">jobvs</span>,
+                      <span class="ruby-identifier">sort</span>,
+                      <span class="ruby-identifier">select</span>,
+                      <span class="ruby-identifier">n</span>,
+                      <span class="ruby-identifier">a</span>,
+                      <span class="ruby-identifier">lda</span>,
+                      <span class="ruby-identifier">sdim</span>,
+                      <span class="ruby-identifier">wr</span>,
+                      <span class="ruby-identifier">wi</span>,
+                      <span class="ruby-identifier">vs</span>,
+                      <span class="ruby-identifier">ldvs</span>,
+                      <span class="ruby-identifier">work</span>,
+                      <span class="ruby-identifier">lwork</span>,
+                      <span class="ruby-identifier">bwork</span>,
+                      <span class="ruby-identifier">info</span>)
+         
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Diverged</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+         <span class="ruby-identifier">lwork</span> = <span class="ruby-constant">XInteger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">work</span>.<span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>)
+         <span class="ruby-identifier">work</span> = <span class="ruby-constant">DData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">lwork</span>.<span class="ruby-identifier">value</span>)
+         
+         <span class="ruby-constant">Lapack</span>.<span class="ruby-identifier">dgees</span>(<span class="ruby-identifier">jobvs</span>,
+                      <span class="ruby-identifier">sort</span>,
+                      <span class="ruby-identifier">select</span>,
+                      <span class="ruby-identifier">n</span>,
+                      <span class="ruby-identifier">a</span>,
+                      <span class="ruby-identifier">lda</span>,
+                      <span class="ruby-identifier">sdim</span>,
+                      <span class="ruby-identifier">wr</span>,
+                      <span class="ruby-identifier">wi</span>,
+                      <span class="ruby-identifier">vs</span>,
+                      <span class="ruby-identifier">ldvs</span>,
+                      <span class="ruby-identifier">work</span>,
+                      <span class="ruby-identifier">lwork</span>,
+                      <span class="ruby-identifier">bwork</span>,
+                      <span class="ruby-identifier">info</span>)
+         
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Diverged</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">info</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+
+         <span class="ruby-identifier">res</span> = [<span class="ruby-identifier">vs</span>, <span class="ruby-identifier">a</span>, <span class="ruby-identifier">wr</span>, <span class="ruby-identifier">wi</span>]
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+            <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">res</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">res</span>
+         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

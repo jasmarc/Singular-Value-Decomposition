@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>row (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: row(i)
+ *
+ * Returns the +i+-th row of the matrix.
+ *
+ */
+VALUE rb_dmatrix_row( VALUE self, VALUE ri )
+{
+    DMatrix* a ;
+    integer i = (integer)NUM2INT(ri) ;
+    get_dmatrix(a, self) ;
+    return wrap_dmatrix(dmatrix_minor(a, i, 0, 1, a-&gt;hsize)) ;
+}</pre>
+</body>
+</html>

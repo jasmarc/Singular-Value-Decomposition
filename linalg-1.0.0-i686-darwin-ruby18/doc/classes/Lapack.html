@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Lapack</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Lapack</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/lapack_rb.html">
+                lib/lapack.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Simple, strongly-typed bindings to LAPACK.
+</p>
+<p>
+Every LAPACK subroutine is accessible from the <tt><a
+href="Lapack.html">Lapack</a></tt> module
+</p>
+<pre>
+  Lapack.methods.size  # =&gt; 1498
+</pre>
+<p>
+and each subroutine corresponds to a <tt><a
+href="Lapack.html">Lapack</a></tt> module method of the same name
+</p>
+<pre>
+  Lapack.methods.include? &quot;dgemm&quot;  # =&gt; true
+</pre>
+<p>
+The <tt><a href="Lapack.html">Lapack</a></tt> module knows the type
+signature of each LAPACK subroutine. With this signature it calls the
+appropriate method:
+</p>
+<pre>
+   to_real_ptr
+   to_doublereal_ptr
+   to_complex_ptr
+   to_doublecomplex_ptr
+   to_integer_ptr
+   to_logical_ptr
+   to_L_fp_ptr
+   to_char_ptr
+</pre>
+<p>
+on each parameter passed. For example,
+</p>
+<pre>
+  Lapack.dgemm(transa,  # calls transa.to_integer_ptr
+               transb,  # calls transb.to_integer_ptr
+               m,       # calls m.to_integer_ptr
+               n,       # calls n.to_integer_ptr
+               k,       # calls k.to_integer_ptr
+               alpha,   # calls alpha.to_doublereal_ptr
+               a,       # calls a.to_doublereal_ptr
+               lda,     # calls lda.to_integer_ptr
+               b,       # calls b.to_doublereal_ptr
+               ldb,     # calls b.to_integer_ptr
+               beta,    # calls beta.to_doublereal_ptr
+               c,       # calls c.to_doublereal_ptr
+               ldc)     # calls ldc.to_integer_ptr
+</pre>
+<p>
+The type names are taken directly from g2c.h.
+</p>
+<pre>
+   real
+   doublereal
+   complex
+   doublecomplex
+   integer
+   logical
+   L_fp
+   char
+</pre>
+<p>
+Each <tt>to_FORTRANTYPE_ptr</tt> method returns the actual pointer value of
+some data.
+</p>
+<p>
+Where do you find classes which so promiscuously expose pointer values?
+Well, you make them from your own extension classes, or you may use some
+generic classes which are provided. See Linalg::XData for some very simple
+data classes.
+</p>
+<p>
+It should be emphasized that there is no preferred class or data structure
+for interacting with the <tt><a href="Lapack.html">Lapack</a></tt> module.
+All <tt><a href="Lapack.html">Lapack</a></tt> requires is that the
+appropriate to_FORTRANTYPE_ptr be implemented on each parameter passed.
+From this perspective it is questionable whether <tt><a
+href="Lapack.html">Lapack</a></tt> should even be bundled with the
+<tt>linalg</tt> package.
+</p>
+<p>
+<tt>DMatrix</tt>, for example, is just a class which implements the
+<tt>to_doublereal_ptr</tt> method, and the entirety of its communication
+from ruby to <tt><a href="Lapack.html">Lapack</a></tt> goes through that
+method.
+</p>
+<p>
+For C extension writers: While C&#8216;s <tt>double</tt>, for example, is
+almost surely the same as <tt>doublereal</tt>, to ensure portability it is
+generally good practice to use the aforementioned types found in the g2c.h
+header on your system.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

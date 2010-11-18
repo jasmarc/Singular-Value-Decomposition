@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>* (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: *(b)
+ *
+ * Matrix multiply
+ *
+ *   c = a * b
+ *
+ * +DimensionError+ is raised unless
+ *
+ *   a.hsize == b.vsize
+ *
+ */
+VALUE rb_dmatrix_mul(VALUE self, VALUE rb)
+{
+    DMatrix* a ;
+    get_dmatrix(a, self) ;
+
+    if( rb_obj_is_kind_of(rb, rb_cDMatrix) )
+    {
+        DMatrix* b ;
+        DMatrix* c ;
+
+        get_dmatrix(b, rb) ;
+        
+        if( a-&gt;hsize != b-&gt;vsize )
+        {
+            raise_dim_error() ;
+        }
+        
+        c = DMatrix_new(a-&gt;vsize, b-&gt;hsize) ;
+        DMatrix_mul(c, a, b) ;
+        return wrap_dmatrix(c) ;
+    }
+    else
+    {
+        DMatrix* c = DMatrix_clone(a) ;
+        DMatrix_mul_scalar(c, NUM2DBL(rb)) ;
+        return wrap_dmatrix(c) ;
+    }
+}</pre>
+</body>
+</html>

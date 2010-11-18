@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>dot (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/* 
+ * call-seq: dot(b)
+ *
+ * Column vector dot product
+ *
+ *   a.dot(b)
+ *
+ * +DimensionError+ is raised unless
+ *
+ *   a.hsize == b.hsize and
+ *   b.hsize == 1 and
+ *   a.vsize == b.vsize
+ *
+ */
+VALUE rb_dmatrix_dot(VALUE self, VALUE rb)
+{
+    DMatrix* a ;
+    DMatrix* b ;
+
+    get_dmatrix(a, self) ;
+    get_dmatrix(b, rb) ;
+
+    if( a-&gt;hsize != 1 ||
+        b-&gt;hsize != 1 ||
+        a-&gt;vsize != b-&gt;vsize )
+    {
+        raise_dim_error() ;
+    }
+    
+    return rb_float_new(DMatrix_dot(a, b)) ;
+}</pre>
+</body>
+</html>
