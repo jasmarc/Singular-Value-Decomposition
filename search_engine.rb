@@ -50,8 +50,6 @@ class SearchEngine
         add(word, document, location) unless word_does_not_belong(word)
       end
     end
-    words = @word_list.sort.map{ |x| x.first}
-    @words_hash = words.to_hash_keys {|x| words.index(x)}
     @term_document_matrix = compute_term_document_matrix
   end
   
@@ -80,7 +78,12 @@ class SearchEngine
     puts "Ready!"
     td_matrix
   end
-
+  
+  def words_hash
+    words = @word_list.sort.map{ |x| x.first}
+    words.to_hash_keys {|x| words.index(x)}
+  end
+  
   # This method exists solely for the benefit of the grader who
   # might want to peek into my "word list" datastructure.
   # This will print the first n items in my word list.
@@ -101,7 +104,7 @@ class SearchEngine
   # Then find the terms in the hash table to create a sparse vector
   # We remove nils and then convert from a sparse vector to a dense vector
   def query_vector(query)
-    query.map {|x| @words_hash[x]}.compact.reject { |s| s.nil? }.to_dense(@word_list.size)
+    query.map {|x| words_hash[x]}.compact.reject { |s| s.nil? }.to_dense(@word_list.size)
   end
   
   def query(query)
@@ -145,16 +148,17 @@ private
 
   def word_to_num(s)
     RubyProf.start
-    @words_hash[s]
+    words_hash[s]
     result = RubyProf.stop
 
     # Print a flat profile to text
     printer = RubyProf::FlatPrinter.new(result)
     printer.print(STDOUT, 0)
+    die "end"
   end
 
   def num_to_word(n)
-    @words_hash.invert[n]
+    words_hash.invert[n]
   end
 
   # When we add an entry to a wordlist, we want to know
