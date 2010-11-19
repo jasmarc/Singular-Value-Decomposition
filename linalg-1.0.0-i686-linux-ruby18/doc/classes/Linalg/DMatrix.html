@@ -1,0 +1,2607 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Linalg::DMatrix</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Linalg::DMatrix</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/linalg/dmatrix/main_rb.html">
+                lib/linalg/dmatrix/main.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/cholesky_rb.html">
+                lib/linalg/dmatrix/cholesky.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/cond_rb.html">
+                lib/linalg/dmatrix/cond.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/det_rb.html">
+                lib/linalg/dmatrix/det.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/eigen_rb.html">
+                lib/linalg/dmatrix/eigen.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/fit_rb.html">
+                lib/linalg/dmatrix/fit.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/inverse_rb.html">
+                lib/linalg/dmatrix/inverse.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/lu_rb.html">
+                lib/linalg/dmatrix/lu.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/norms_rb.html">
+                lib/linalg/dmatrix/norms.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/nullspace_rb.html">
+                lib/linalg/dmatrix/nullspace.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/qr_rb.html">
+                lib/linalg/dmatrix/qr.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/schur_rb.html">
+                lib/linalg/dmatrix/schur.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/solve_rb.html">
+                lib/linalg/dmatrix/solve.rb
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/svd_rb.html">
+                lib/linalg/dmatrix/svd.rb
+                </a>
+        <br />
+                <a href="../../files/ext/linalg/dmatrix_c.html">
+                ext/linalg/dmatrix.c
+                </a>
+        <br />
+                <a href="../../files/lib/linalg/dmatrix/alias_rb.html">
+                lib/linalg/dmatrix/alias.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="DMatrix.html">DMatrix</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000089">*</a>&nbsp;&nbsp;
+      <a href="#M000082">+</a>&nbsp;&nbsp;
+      <a href="#M000084">+@</a>&nbsp;&nbsp;
+      <a href="#M000085">-</a>&nbsp;&nbsp;
+      <a href="#M000087">-@</a>&nbsp;&nbsp;
+      <a href="#M000092">/</a>&nbsp;&nbsp;
+      <a href="#M000023">==</a>&nbsp;&nbsp;
+      <a href="#M000029">=~</a>&nbsp;&nbsp;
+      <a href="#M000020">[]</a>&nbsp;&nbsp;
+      <a href="#M000075">[]</a>&nbsp;&nbsp;
+      <a href="#M000076">[]=</a>&nbsp;&nbsp;
+      <a href="#M000078">_dump</a>&nbsp;&nbsp;
+      <a href="#M000070">_load</a>&nbsp;&nbsp;
+      <a href="#M000112">chol</a>&nbsp;&nbsp;
+      <a href="#M000034">cholesky</a>&nbsp;&nbsp;
+      <a href="#M000079">clone</a>&nbsp;&nbsp;
+      <a href="#M000081">coerce</a>&nbsp;&nbsp;
+      <a href="#M000109">col</a>&nbsp;&nbsp;
+      <a href="#M000097">column</a>&nbsp;&nbsp;
+      <a href="#M000120">column_norm</a>&nbsp;&nbsp;
+      <a href="#M000021">columns</a>&nbsp;&nbsp;
+      <a href="#M000035">cond</a>&nbsp;&nbsp;
+      <a href="#M000036">cond_est_1</a>&nbsp;&nbsp;
+      <a href="#M000037">cond_est_inf</a>&nbsp;&nbsp;
+      <a href="#M000108">det</a>&nbsp;&nbsp;
+      <a href="#M000038">determinant</a>&nbsp;&nbsp;
+      <a href="#M000067">diagonal</a>&nbsp;&nbsp;
+      <a href="#M000074">dimensions</a>&nbsp;&nbsp;
+      <a href="#M000093">dot</a>&nbsp;&nbsp;
+      <a href="#M000039">eigensystem</a>&nbsp;&nbsp;
+      <a href="#M000040">eigenvalues</a>&nbsp;&nbsp;
+      <a href="#M000033">exchange_columns</a>&nbsp;&nbsp;
+      <a href="#M000032">exchange_rows</a>&nbsp;&nbsp;
+      <a href="#M000103">fill</a>&nbsp;&nbsp;
+      <a href="#M000042">fit</a>&nbsp;&nbsp;
+      <a href="#M000122">frobenius_norm</a>&nbsp;&nbsp;
+      <a href="#M000073">hsize</a>&nbsp;&nbsp;
+      <a href="#M000066">identity</a>&nbsp;&nbsp;
+      <a href="#M000025">inspect</a>&nbsp;&nbsp;
+      <a href="#M000026">inspect2</a>&nbsp;&nbsp;
+      <a href="#M000107">inv</a>&nbsp;&nbsp;
+      <a href="#M000043">inverse</a>&nbsp;&nbsp;
+      <a href="#M000044">inverse!</a>&nbsp;&nbsp;
+      <a href="#M000018">join_columns</a>&nbsp;&nbsp;
+      <a href="#M000019">join_rows</a>&nbsp;&nbsp;
+      <a href="#M000045">lu</a>&nbsp;&nbsp;
+      <a href="#M000046">lu!</a>&nbsp;&nbsp;
+      <a href="#M000051">maxabs</a>&nbsp;&nbsp;
+      <a href="#M000101">minor</a>&nbsp;&nbsp;
+      <a href="#M000086">minus!</a>&nbsp;&nbsp;
+      <a href="#M000105">mul!</a>&nbsp;&nbsp;
+      <a href="#M000115">ncol</a>&nbsp;&nbsp;
+      <a href="#M000088">negate!</a>&nbsp;&nbsp;
+      <a href="#M000071">new</a>&nbsp;&nbsp;
+      <a href="#M000119">norm</a>&nbsp;&nbsp;
+      <a href="#M000048">norm_1</a>&nbsp;&nbsp;
+      <a href="#M000047">norm_2</a>&nbsp;&nbsp;
+      <a href="#M000050">norm_f</a>&nbsp;&nbsp;
+      <a href="#M000049">norm_inf</a>&nbsp;&nbsp;
+      <a href="#M000113">nrow</a>&nbsp;&nbsp;
+      <a href="#M000055">nullity</a>&nbsp;&nbsp;
+      <a href="#M000052">nullspace</a>&nbsp;&nbsp;
+      <a href="#M000116">num_columns</a>&nbsp;&nbsp;
+      <a href="#M000114">num_rows</a>&nbsp;&nbsp;
+      <a href="#M000118">orth</a>&nbsp;&nbsp;
+      <a href="#M000117">pinv</a>&nbsp;&nbsp;
+      <a href="#M000083">plus!</a>&nbsp;&nbsp;
+      <a href="#M000090">postmul!</a>&nbsp;&nbsp;
+      <a href="#M000091">premul!</a>&nbsp;&nbsp;
+      <a href="#M000041">pseudo_inverse</a>&nbsp;&nbsp;
+      <a href="#M000058">qr</a>&nbsp;&nbsp;
+      <a href="#M000059">qr!</a>&nbsp;&nbsp;
+      <a href="#M000068">rand</a>&nbsp;&nbsp;
+      <a href="#M000054">rank</a>&nbsp;&nbsp;
+      <a href="#M000053">rankspace</a>&nbsp;&nbsp;
+      <a href="#M000057">regular?</a>&nbsp;&nbsp;
+      <a href="#M000099">replace_column</a>&nbsp;&nbsp;
+      <a href="#M000102">replace_minor</a>&nbsp;&nbsp;
+      <a href="#M000100">replace_row</a>&nbsp;&nbsp;
+      <a href="#M000069">reserve</a>&nbsp;&nbsp;
+      <a href="#M000098">row</a>&nbsp;&nbsp;
+      <a href="#M000121">row_norm</a>&nbsp;&nbsp;
+      <a href="#M000065">rows</a>&nbsp;&nbsp;
+      <a href="#M000060">schur</a>&nbsp;&nbsp;
+      <a href="#M000022">singleton_class</a>&nbsp;&nbsp;
+      <a href="#M000056">singular?</a>&nbsp;&nbsp;
+      <a href="#M000063">singular_value_decomposition</a>&nbsp;&nbsp;
+      <a href="#M000064">singular_values</a>&nbsp;&nbsp;
+      <a href="#M000061">solve</a>&nbsp;&nbsp;
+      <a href="#M000062">solve!</a>&nbsp;&nbsp;
+      <a href="#M000030">square?</a>&nbsp;&nbsp;
+      <a href="#M000111">sv</a>&nbsp;&nbsp;
+      <a href="#M000110">svd</a>&nbsp;&nbsp;
+      <a href="#M000104">symmetric!</a>&nbsp;&nbsp;
+      <a href="#M000031">symmetric?</a>&nbsp;&nbsp;
+      <a href="#M000106">t</a>&nbsp;&nbsp;
+      <a href="#M000077">to_a</a>&nbsp;&nbsp;
+      <a href="#M000080">to_doublereal_ptr</a>&nbsp;&nbsp;
+      <a href="#M000028">to_f</a>&nbsp;&nbsp;
+      <a href="#M000027">to_s</a>&nbsp;&nbsp;
+      <a href="#M000024">trace</a>&nbsp;&nbsp;
+      <a href="#M000094">transpose</a>&nbsp;&nbsp;
+      <a href="#M000095">transpose!</a>&nbsp;&nbsp;
+      <a href="#M000072">vsize</a>&nbsp;&nbsp;
+      <a href="#M000096">within</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Iterators.html">Iterators</a></span>
+        <span class="include-name">XData</span>
+        <span class="include-name"><a href="Exception.html">Linalg::Exception</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">default_epsilon</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000020.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000020.html');return false;">
+          <span class="method-name">[]</span><span class="method-args">(*array)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+calls <a href="DMatrix.html#M000065">DMatrix.rows</a> with a splat (*)
+</p>
+<pre>
+  DMatrix[[1,2,3],[4,5,6]]
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  DMatrix.rows [[1,2,3],[4,5,6]]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000070.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000070.html');return false;">
+          <span class="method-name"> _load<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+For Marshal. Uses native data format.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000021.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000021.html');return false;">
+          <span class="method-name">columns</span><span class="method-args">(array)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a matrix using the elements of <tt>array</tt> as <a
+href="DMatrix.html#M000021">columns</a>.
+</p>
+<pre>
+  DMatrix.columns(array)
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  DMatrix.new(array[0].size, array.size) { |i,j| array[j][i] }
+</pre>
+<p>
+<tt>DimensionError</tt> is raised if <tt>array</tt> is not rectangular.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000067.html');return false;">
+          <span class="method-name">diagonal(array)<br />
+diagonal(vector)<br />
+diagonal(n, scalar)<br />
+diagonal(n) { |i| ... }<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In the first form, create a <a href="DMatrix.html#M000067">diagonal</a>
+matrix with the elements of <tt>array</tt> along the <a
+href="DMatrix.html#M000067">diagonal</a>. The second form is like the first
+but using elements of the <a href="DMatrix.html#M000097">column</a> vector
+<tt>vector</tt>. In the third form, create an <tt>n</tt> x <tt>n</tt> <a
+href="DMatrix.html#M000067">diagonal</a> matrix with <a
+href="DMatrix.html#M000067">diagonal</a> elements of value <tt>scalar</tt>.
+In the fourth form, each element <tt>m[i,i]</tt> gets the block result.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000042.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000042.html');return false;">
+          <span class="method-name">fit(a, b, epsilon = nil)  => x<br />
+fit(a, b, epsilon = nil) { |x| ... }  => block value<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Least squares minimization using QR factorization.
+</p>
+<p>
+Find <tt>x</tt> for which
+</p>
+<pre>
+  (a*x - b).norm_2
+</pre>
+<p>
+is a minimum.
+</p>
+<p>
+Assumes a matrix of full <a href="DMatrix.html#M000054">rank</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000066.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000066.html');return false;">
+          <span class="method-name"> identity(n)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create an <tt>n</tt> x <tt>n</tt> <a
+href="DMatrix.html#M000066">identity</a> matrix.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000018.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000018.html');return false;">
+          <span class="method-name">join_columns</span><span class="method-args">(cols)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a matrix by joining together a list of <a
+href="DMatrix.html#M000097">column</a> vectors
+</p>
+<pre>
+  m == DMatrix.join_columns(m.columns.map { |x| x })
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000019.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000019.html');return false;">
+          <span class="method-name">join_rows</span><span class="method-args">(rows)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a matrix by joining together a list of <a
+href="DMatrix.html#M000098">row</a> vectors
+</p>
+<pre>
+  m == DMatrix.join_rows(m.rows.map { |x| x })
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000071.html');return false;">
+          <span class="method-name">new(vsize, hsize)<br />
+new(vsize, hsize, scalar)<br />
+new(vsize, hsize) { |i, j| ... }<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="DMatrix.html#M000071">new</a> matrix with <a
+href="DMatrix.html#M000074">dimensions</a> [<tt><a
+href="DMatrix.html#M000072">vsize</a></tt>, <tt><a
+href="DMatrix.html#M000073">hsize</a></tt>].
+</p>
+<p>
+In the first form, the matrix is filled with zero. In the second form, the
+matrix is filled with <tt>scalar</tt>. In the third form, each index pair
+is passed to the block and the respective matrix element is assigned the
+block result.
+</p>
+<pre>
+  DMatrix.new(4,4) { |i,j| i == j ? 1 : 0 }
+</pre>
+<p>
+is the 4 x 4 <a href="DMatrix.html#M000066">identity</a> matrix.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000068.html');return false;">
+          <span class="method-name"> rand(vsize, hsize)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a matrix filled with random numbers between -1.0 and 1.0.
+</p>
+<p>
+Similar to
+</p>
+<pre>
+  DMatrix.new(vsize, hsize) { 2*rand - 1 }
+</pre>
+<p>
+except uses <tt><a href="DMatrix.html#M000068">rand</a>()</tt> from
+<tt>stdlib.h</tt>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000069.html');return false;">
+          <span class="method-name">reserve</span><span class="method-args">(p1, p2)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+:nodoc:
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000065.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000065.html');return false;">
+          <span class="method-name"> rows(array)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a matrix using the elements of <tt>array</tt> as <a
+href="DMatrix.html#M000065">rows</a>.
+</p>
+<pre>
+  DMatrix.rows(array)
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  DMatrix.new(array.size, array[0].size) { |i,j| array[i][j] }
+</pre>
+<p>
+<tt>DimensionError</tt> is raised if <tt>array</tt> is not rectangular.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000061.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000061.html');return false;">
+          <span class="method-name"> solve(a, b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Solve the linear equation
+</p>
+<pre>
+  a * x == b
+</pre>
+<p>
+Returns the solution <tt>x</tt>, or raises <tt>SingularMatrix</tt> if
+<tt>a</tt> was singular.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000062.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000062.html');return false;">
+          <span class="method-name"> solve!(a, b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Solve the linear equation
+</p>
+<pre>
+  a * x == b
+</pre>
+<p>
+<tt>a</tt> and <tt>b</tt> are <b>both</b> <b>overwritten</b>.
+</p>
+<p>
+If a unique solution is found, <tt>a</tt> contains both L and U factors
+while <tt>b</tt> holds the solution <tt>x</tt> above.
+</p>
+<p>
+Returns the solution <tt>x</tt>, or raises <tt>SingularMatrix</tt> if
+<tt>a</tt> was singular.
+</p>
+<pre>
+  x = DMatrix.solve!(a, b)
+  x.object_id == b.object_id
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000089" class="method-detail">
+        <a name="M000089"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000089.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000089.html');return false;">
+          <span class="method-name">(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Matrix multiply
+</p>
+<pre>
+  c = a * b
+</pre>
+<p>
+<tt>DimensionError</tt> is raised unless
+</p>
+<pre>
+  a.hsize == b.vsize
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000082" class="method-detail">
+        <a name="M000082"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000082.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000082.html');return false;">
+          <span class="method-name"> +(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Matrix addition.
+</p>
+<pre>
+  a + b
+</pre>
+<p>
+<tt>DimensionError</tt> is raised unless
+</p>
+<pre>
+  a.dimensions == b.dimensions
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000084" class="method-detail">
+        <a name="M000084"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000084.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000084.html');return false;">
+          <span class="method-name"> +@<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unary plus. Does nothing.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000085.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000085.html');return false;">
+          <span class="method-name"> -(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Matrix subtraction
+</p>
+<pre>
+  a - b
+</pre>
+<p>
+<tt>DimensionError</tt> is raised unless
+</p>
+<pre>
+  a.dimensions == b.dimensions
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000087" class="method-detail">
+        <a name="M000087"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000087.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000087.html');return false;">
+          <span class="method-name"> -@<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unary minus
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000092.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000092.html');return false;">
+          <span class="method-name"> /(s)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Division by scalar <tt>s</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000023.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000023.html');return false;">
+          <span class="method-name">==</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+True if element-wise identical values.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000029.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000029.html');return false;">
+          <span class="method-name">=~</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Implemented as
+</p>
+<pre>
+  m.within(epsilon, other)
+</pre>
+<p>
+where
+</p>
+<pre>
+  epsilon =
+     self.singleton_class.default_epsilon ||
+     self.class.default_epsilon
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000075.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000075.html');return false;">
+          <span class="method-name"> [](row, column)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Element read. Column vectors are permitted to omit the <tt><a
+href="DMatrix.html#M000097">column</a></tt> index.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000076.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000076.html');return false;">
+          <span class="method-name"> []=(row, column)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Element write. Column vectors are permitted to omit the <tt><a
+href="DMatrix.html#M000097">column</a></tt> index.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000078.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000078.html');return false;">
+          <span class="method-name"> _dump<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+For Marshal. Uses native data format.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000112" class="method-detail">
+        <a name="M000112"></a>
+
+        <div class="method-heading">
+          <span class="method-name">chol</span><span class="method-args">(</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000034">cholesky</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000034.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000034.html');return false;">
+          <span class="method-name">cholesky  => u<br />
+cholesky { |u| ... }  => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Given a symmetric positive definite matrix <tt>m</tt>, gives an
+upper-triangular matrix <tt>u</tt> such that
+</p>
+<pre>
+  u.t * u
+</pre>
+<p>
+is equal to <tt>m</tt>.
+</p>
+<p>
+Only the upper-triangular portion of <tt>m</tt> is considered for the
+algorithm.
+</p>
+<p>
+Raises <tt>Diverged</tt> if <tt>m</tt> was not positive definite.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000079.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000079.html');return false;">
+          <span class="method-name"> clone<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deep copy
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000081" class="method-detail">
+        <a name="M000081"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000081.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000081.html');return false;">
+          <span class="method-name"> coerce(other)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Internal call from Numeric#coerce.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000109" class="method-detail">
+        <a name="M000109"></a>
+
+        <div class="method-heading">
+          <span class="method-name">col</span><span class="method-args">(p1)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000097">column</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000097" class="method-detail">
+        <a name="M000097"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000097.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000097.html');return false;">
+          <span class="method-name"> column(j)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <tt>j</tt>-th <a href="DMatrix.html#M000097">column</a> of the
+matrix.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <span class="method-name">column_norm</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000048">norm_1</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000035.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000035.html');return false;">
+          <span class="method-name">cond</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The condition number. Ratio of the largest singular value to the smallest.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000036.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000036.html');return false;">
+          <span class="method-name">cond_est_1</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Estimate the condition number using the 1-<a
+href="DMatrix.html#M000119">norm</a>. Seems to be <a
+href="DMatrix.html#M000096">within</a> an order of magnitude.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000037.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000037.html');return false;">
+          <span class="method-name">cond_est_inf</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Estimate the condition number using the infinity-<a
+href="DMatrix.html#M000119">norm</a>. Seems to be <a
+href="DMatrix.html#M000096">within</a> an order of magnitude.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000108" class="method-detail">
+        <a name="M000108"></a>
+
+        <div class="method-heading">
+          <span class="method-name">det</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000038">determinant</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000038.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000038.html');return false;">
+          <span class="method-name">determinant</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="DMatrix.html#M000038">determinant</a> of the matrix.
+Raises <tt>DimensionError</tt> if the matrix is not square.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000074.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000074.html');return false;">
+          <span class="method-name"> dimensions<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the pair
+</p>
+<pre>
+  [a.vsize, a.hsize]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000093" class="method-detail">
+        <a name="M000093"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000093.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000093.html');return false;">
+          <span class="method-name"> dot(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Column vector <a href="DMatrix.html#M000093">dot</a> product
+</p>
+<pre>
+  a.dot(b)
+</pre>
+<p>
+<tt>DimensionError</tt> is raised unless
+</p>
+<pre>
+  a.hsize == b.hsize and
+  b.hsize == 1 and
+  a.vsize == b.vsize
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000039.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000039.html');return false;">
+          <span class="method-name">eigensystem  => [eigvs, real, imag]<br />
+eigensystem { |eigvs, real, imag| ... } => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Find the eigenvectors and <a href="DMatrix.html#M000040">eigenvalues</a> of
+the matrix.
+</p>
+<p>
+The <a href="DMatrix.html#M000021">columns</a> of <tt>eigvs</tt> hold the
+eigenvectors; the <a href="DMatrix.html#M000097">column</a> vectors
+<tt>real</tt> and <tt>imag</tt> hold the <a
+href="DMatrix.html#M000040">eigenvalues</a>.
+</p>
+<p>
+Stepping through the <a href="DMatrix.html#M000040">eigenvalues</a> in
+succession starting from the beginning, one will encounter either a real
+eigenvalue or a complex conjugate pair. That is, either the imaginary part
+will be exactly equal to zero
+</p>
+<pre>
+  imag[n] == 0.0
+</pre>
+<p>
+or there will be a conjugate pair with the following exactly equal,
+</p>
+<pre>
+  real[n] == real[n+1]
+  imag[n] == -imag[n+1]
+</pre>
+<p>
+In the former case, the real eigenvector
+</p>
+<pre>
+  eigvs.column(n)
+</pre>
+<p>
+corresponds to the real eigenvalue
+</p>
+<pre>
+  real[n]
+</pre>
+<p>
+In the latter case, the complex eigenvector
+</p>
+<pre>
+  eigvs.column(n) + i*eigvs.column(n+1)
+</pre>
+<p>
+corresponds to the complex eigenvalue
+</p>
+<pre>
+  real[n] + i*imag[n]
+</pre>
+<p>
+and the conjugate eigenvector
+</p>
+<pre>
+  eigvs.column(n) - i*eigvs.column(n+1)
+</pre>
+<p>
+corresponds to the conjugate eigenvalue
+</p>
+<pre>
+  real[n] - i*imag[n]
+</pre>
+<p>
+for <tt>i = sqrt(-1)</tt>.
+</p>
+<p>
+The eigenvectors are each given unit length with largest component real.
+</p>
+<p>
+Raises <tt>DimensionError</tt> if the given matrix is not square. May raise
+<tt>Diverged</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000040.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000040.html');return false;">
+          <span class="method-name">eigenvalues  => [real, imag]<br />
+eigenvalues { |real, imag| ... } => block result <br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="DMatrix.html#M000040">eigenvalues</a>. See <a
+href="DMatrix.html#M000039">DMatrix#eigensystem</a> for the format in which
+<a href="DMatrix.html#M000040">eigenvalues</a> are returned.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000033.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000033.html');return false;">
+          <span class="method-name">exchange_columns</span><span class="method-args">(p, q)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Exchange the <tt>p</tt>-th <a href="DMatrix.html#M000097">column</a> with
+the <tt>q</tt>-th <a href="DMatrix.html#M000097">column</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000032.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000032.html');return false;">
+          <span class="method-name">exchange_rows</span><span class="method-args">(p, q)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Exchange the <tt>p</tt>-th <a href="DMatrix.html#M000098">row</a> with the
+<tt>q</tt>-th <a href="DMatrix.html#M000098">row</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000103" class="method-detail">
+        <a name="M000103"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000103.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000103.html');return false;">
+          <span class="method-name"> fill(value)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Fill the matrix with <tt>value</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <span class="method-name">frobenius_norm</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000050">norm_f</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000073.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000073.html');return false;">
+          <span class="method-name"> hsize<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Horizontal size of the matrix (number of <a
+href="DMatrix.html#M000021">columns</a>)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000025.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000025.html');return false;">
+          <span class="method-name">inspect</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="DMatrix.html#M000027">to_s</a> but prepended with a
+newline for nice irb output
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000026.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000026.html');return false;">
+          <span class="method-name">inspect2</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Dump to an <tt>eval</tt>-able string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000107" class="method-detail">
+        <a name="M000107"></a>
+
+        <div class="method-heading">
+          <span class="method-name">inv</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000043">inverse</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000043.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000043.html');return false;">
+          <span class="method-name"> inverse<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Matrix <a href="DMatrix.html#M000043">inverse</a>. Raises
+<tt>SingularMatrix</tt> if the matrix is singular.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000044.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000044.html');return false;">
+          <span class="method-name"> inverse!<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place matrix <a href="DMatrix.html#M000043">inverse</a>. Raises
+<tt>SingularMatrix</tt> if the matrix is singular.
+</p>
+<pre>
+  a.object_id == a.inverse!.object_id
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000045.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000045.html');return false;">
+          <span class="method-name">lu  => [p, l, u]<br />
+lu { |p, l, u| ... }  => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Generalized LU decomposition for rectangular matrices. The matrix is
+decomposed into
+</p>
+<pre>
+  p * l * u
+</pre>
+<p>
+where <tt>p</tt> is a permutation matrix, <tt>l</tt> lower-triangular (or
+lower-trapezoidal), and <tt>u</tt> is upper-triangular (or
+upper-trapezoidal).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000046.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000046.html');return false;">
+          <span class="method-name">lu! => p<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place LU decomposition. The matrix is overwritten with both L and U
+factors (the <a href="DMatrix.html#M000067">diagonal</a> 1&#8216;s of L are
+discarded). Returns the vector <tt>p</tt> of pivots.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000051.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000051.html');return false;">
+          <span class="method-name"> maxabs<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The maximum absolute value of the individual matrix elements. For matrix
+<tt>m</tt>, equivalent to
+</p>
+<pre>
+  m.elems.map { |e| e.abs }.to_a.flatten.sort[-1]
+</pre>
+<p>
+Note <tt><a href="DMatrix.html#M000051">maxabs</a></tt> is not a matrix <a
+href="DMatrix.html#M000119">norm</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000101" class="method-detail">
+        <a name="M000101"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000101.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000101.html');return false;">
+          <span class="method-name"> minor(i, j, vsize, hsize)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the <a href="DMatrix.html#M000101">minor</a> with upper-left
+position <tt>[i, j]</tt> and <a href="DMatrix.html#M000074">dimensions</a>
+<tt>[<a href="DMatrix.html#M000072">vsize</a>, <a
+href="DMatrix.html#M000073">hsize</a>]</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000086.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000086.html');return false;">
+          <span class="method-name"> minus!(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place matrix subtraction.
+</p>
+<pre>
+  c = a - b
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  c = a.minus!(b)
+</pre>
+<p>
+with
+</p>
+<pre>
+  a.object_id == c.object_id
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000105" class="method-detail">
+        <a name="M000105"></a>
+
+        <div class="method-heading">
+          <span class="method-name">mul!</span><span class="method-args">(p1)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for postmul!
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <span class="method-name">ncol</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000073">hsize</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000088" class="method-detail">
+        <a name="M000088"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000088.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000088.html');return false;">
+          <span class="method-name"> negate!<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place unary minus.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <span class="method-name">norm</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000047">norm_2</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000048.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000048.html');return false;">
+          <span class="method-name"> norm_1<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The 1-<a href="DMatrix.html#M000119">norm</a>. Maximum <a
+href="DMatrix.html#M000097">column</a> absolute sum. For matrix <tt>m</tt>,
+equivalent to
+</p>
+<pre>
+  m.columns.map { |col|
+     col.elems.inject(0.0) { |acc, e| acc + e.abs }
+  }.sort[-1]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000047.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000047.html');return false;">
+          <span class="method-name">norm_2</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The 2-<a href="DMatrix.html#M000119">norm</a>. The largest singular value.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000050.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000050.html');return false;">
+          <span class="method-name"> norm_f<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Frobenius <a href="DMatrix.html#M000119">norm</a>. Square root of the sum
+of the squares of the elements.
+</p>
+<p>
+For matrix <tt>m</tt>, equivalent to
+</p>
+<pre>
+  Math.sqrt(m.elems.inject(0.0) { |acc, e| acc + e*e })
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000049.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000049.html');return false;">
+          <span class="method-name"> norm_inf<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The infinity-<a href="DMatrix.html#M000119">norm</a>. Maximum <a
+href="DMatrix.html#M000098">row</a> absolute sum. For matrix <tt>m</tt>,
+equivalent to
+</p>
+<pre>
+  m.rows.map { |row|
+     row.elems.inject(0.0) { |acc, e| acc + e.abs }
+  }.sort[-1]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <span class="method-name">nrow</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000072">vsize</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000055.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000055.html');return false;">
+          <span class="method-name">nullity</span><span class="method-args">(epsilon = self.class.default_epsilon)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="DMatrix.html#M000055">nullity</a> of the matrix (the
+dimension of the <a href="DMatrix.html#M000052">nullspace</a>).
+</p>
+<pre>
+  hsize == rank + nullity
+</pre>
+<p>
+see <a href="DMatrix.html#M000052">DMatrix#nullspace</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000052.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000052.html');return false;">
+          <span class="method-name">nullspace</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon ||self.class.default_epsilon))</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a matrix whose <a href="DMatrix.html#M000021">columns</a> form an
+orthogonal basis for the <a href="DMatrix.html#M000052">nullspace</a>.
+(This is simply taken from <tt>vt.t</tt> in <a
+href="DMatrix.html#M000110">DMatrix#svd</a>.) Returns <tt>nil</tt> if the
+matrix is of full <a href="DMatrix.html#M000054">rank</a>.
+</p>
+<p>
+For matrix <tt>m</tt>, a singular value less than or equal to
+<tt>m.norm*epsilon</tt> is considered a <a
+href="DMatrix.html#M000054">rank</a> deficiency.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <span class="method-name">num_columns</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000073">hsize</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <span class="method-name">num_rows</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000072">vsize</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <span class="method-name">orth</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon ||self.class.default_epsilon))</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000053">rankspace</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <span class="method-name">pinv</span><span class="method-args">(epsilon = nil)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000041">pseudo_inverse</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000083" class="method-detail">
+        <a name="M000083"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000083.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000083.html');return false;">
+          <span class="method-name"> plus!(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place matrix addition.
+</p>
+<pre>
+  a.object_id == a.plus!(b).object_id
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000090" class="method-detail">
+        <a name="M000090"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000090.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000090.html');return false;">
+          <span class="method-name"> postmul!(b)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place multiply
+</p>
+<pre>
+  c = a * b
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  c = a.postmul!(b)
+</pre>
+<p>
+with
+</p>
+<pre>
+  a.object_id == c.object_id
+</pre>
+<p>
+Note this implies <tt>b</tt> must be square. <tt>DimensionError</tt> is
+raised otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000091" class="method-detail">
+        <a name="M000091"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000091.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000091.html');return false;">
+          <span class="method-name"> premul!(a)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place multiply
+</p>
+<pre>
+  c = a * b
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  c = b.premul!(a)
+</pre>
+<p>
+with
+</p>
+<pre>
+  b.object_id == c.object_id
+</pre>
+<p>
+Note this implies <tt>a</tt> must be square. <tt>DimensionError</tt> is
+raised otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000041.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000041.html');return false;">
+          <span class="method-name">pseudo_inverse</span><span class="method-args">(epsilon = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Pseudo-<a href="DMatrix.html#M000043">inverse</a>.
+</p>
+<p>
+For matrix <tt>m</tt>, find <tt>x</tt> which minimizes
+</p>
+<pre>
+  (m*x - DMatrix.identity(m.vsize)).norm
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000058.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000058.html');return false;">
+          <span class="method-name">qr  => [q, r]<br />
+qr { |q, r| ... }  => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+QR factorization. Decompose the matrix into
+</p>
+<pre>
+  q * r
+</pre>
+<p>
+where <tt>q</tt> is orthogonal and <tt>r</tt> is upper-triangular.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000059.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000059.html');return false;">
+          <span class="method-name">qr!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place QR factorization. The contents of the matrix are left in the state
+returned by dgeqrf().
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000054.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000054.html');return false;">
+          <span class="method-name">rank</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon ||self.class.default_epsilon))</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="DMatrix.html#M000097">column</a> <a
+href="DMatrix.html#M000054">rank</a> of the matrix.
+</p>
+<pre>
+  hsize == rank + nullity
+</pre>
+<p>
+see <a href="DMatrix.html#M000052">DMatrix#nullspace</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000053.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000053.html');return false;">
+          <span class="method-name">rankspace</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon ||self.class.default_epsilon))</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a matrix whose <a href="DMatrix.html#M000021">columns</a> form an
+orthonormal basis for the span of the matrix.
+</p>
+<p>
+This is just the complement of the <a
+href="DMatrix.html#M000052">nullspace</a>. See <a
+href="DMatrix.html#M000052">DMatrix#nullspace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000057.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000057.html');return false;">
+          <span class="method-name">regular?</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon ||self.class.default_epsilon))</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+True if the <a href="DMatrix.html#M000054">rank</a> is equal to the number
+of <a href="DMatrix.html#M000021">columns</a>.
+</p>
+<p>
+see <a href="DMatrix.html#M000052">DMatrix#nullspace</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000099" class="method-detail">
+        <a name="M000099"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000099.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000099.html');return false;">
+          <span class="method-name"> replace_column(j, v)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+replace the <tt>j</tt>-th <a href="DMatrix.html#M000097">column</a> with
+the <a href="DMatrix.html#M000097">column</a> vector <tt>v</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000102" class="method-detail">
+        <a name="M000102"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000102.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000102.html');return false;">
+          <span class="method-name"> replace_minor(i, j, minor)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Insert <tt><a href="DMatrix.html#M000101">minor</a></tt> into the matrix,
+where [<tt>i</tt>,<tt>j</tt>] is the location of the upper-left corner of
+the <a href="DMatrix.html#M000101">minor</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000100" class="method-detail">
+        <a name="M000100"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000100.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000100.html');return false;">
+          <span class="method-name"> replace_row(i, v)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+replace the <tt>i</tt>-th <a href="DMatrix.html#M000098">row</a> with the
+<a href="DMatrix.html#M000098">row</a> vector <tt>v</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000098" class="method-detail">
+        <a name="M000098"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000098.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000098.html');return false;">
+          <span class="method-name"> row(i)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <tt>i</tt>-th <a href="DMatrix.html#M000098">row</a> of the
+matrix.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <span class="method-name">row_norm</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000049">norm_inf</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000060.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000060.html');return false;">
+          <span class="method-name">schur  => [z, t, real, imag]<br />
+schur { |z, t, real, imag| ... }  => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decompose into
+</p>
+<pre>
+  z * t * z.t
+</pre>
+<p>
+where <tt>z</tt> is orthogonal and <tt><a
+href="DMatrix.html#M000106">t</a></tt> is quasi upper-<a
+href="DMatrix.html#M000067">diagonal</a>. <tt>real</tt> and <tt>imag</tt>
+contain the respective <a href="DMatrix.html#M000040">eigenvalues</a> in
+the format described in <a
+href="DMatrix.html#M000039">DMatrix#eigensystem</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000022.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000022.html');return false;">
+          <span class="method-name">singleton_class</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the singleton class of the object. Convenient for setting the
+<tt>default_epsilon</tt> on a per-object basis.
+</p>
+<pre>
+  b = DMatrix.rand(4, 4)
+  a = b.map { |e| e + 0.0001 }
+  a.class.default_epsilon  # =&gt; 1e-8
+  a =~ b  # =&gt; false
+  a.singleton_class.default_epsilon = 0.001
+  a =~ b  # =&gt; true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000056.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000056.html');return false;">
+          <span class="method-name">singular?</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon ||self.class.default_epsilon))</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+True if the <a href="DMatrix.html#M000054">rank</a> less than number of <a
+href="DMatrix.html#M000021">columns</a>.
+</p>
+<p>
+see <a href="DMatrix.html#M000052">DMatrix#nullspace</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000063.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000063.html');return false;">
+          <span class="method-name">singular_value_decomposition  => [u, s, vt]<br />
+singular_value_decomposition { |u, s, vt| ... }  => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decompose the <tt>m</tt> x <tt>n</tt> matrix into
+</p>
+<pre>
+  u * s * vt
+</pre>
+<p>
+where <tt>u</tt> and <tt>vt</tt> are orthogonal matrices and <tt>s</tt> is
+an <tt>m</tt> x <tt>n</tt> matrix whose non-<a
+href="DMatrix.html#M000067">diagonal</a> elements are all zero. The <a
+href="DMatrix.html#M000067">diagonal</a> elements of <tt>s</tt> are called
+the <em>singular values</em> of the matrix. If called with
+</p>
+<pre>
+  m.singular_value_decomposition(:diagonalize =&gt; false)
+</pre>
+<p>
+then <tt>s</tt> is a vector of singular values rather than a <a
+href="DMatrix.html#M000067">diagonal</a> matrix.
+</p>
+<p>
+May raise <tt>Diverged</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000064.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000064.html');return false;">
+          <span class="method-name">singular_values  => s<br />
+singular_values { |s| .. }  => block result<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a vector containing the singular values of the matrix. See <a
+href="DMatrix.html#M000063">DMatrix#singular_value_decomposition</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000030.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000030.html');return false;">
+          <span class="method-name">square?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns
+</p>
+<pre>
+  self.vsize == self.hsize
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <span class="method-name">sv</span><span class="method-args">(&amp;b)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000064">singular_values</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <span class="method-name">svd</span><span class="method-args">(opts = nil, &amp;b)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000063">singular_value_decomposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000104" class="method-detail">
+        <a name="M000104"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000104.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000104.html');return false;">
+          <span class="method-name">symmetric!<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Force the matrix to be symmetric, reflecting the upper triangle onto the
+lower triangle.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000031.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000031.html');return false;">
+          <span class="method-name">symmetric?</span><span class="method-args">(epsilon = (self.singleton_class.default_epsilon || self.class.default_epsilon))</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tests whether the matrix is symmetric <a
+href="DMatrix.html#M000096">within</a> <tt>epsilon</tt>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000106" class="method-detail">
+        <a name="M000106"></a>
+
+        <div class="method-heading">
+          <span class="method-name">t</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DMatrix.html#M000094">transpose</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000077.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000077.html');return false;">
+          <span class="method-name"> to_a<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create an array from the matrix
+</p>
+<pre>
+  a = m.to_a
+</pre>
+<p>
+is equivalent to
+</p>
+<pre>
+  a = Array.new(m.vsize) { Array.new(m.hsize) }
+  m.each_index { |i,j|
+     a[i][j] = m[i,j]
+  }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000080" class="method-detail">
+        <a name="M000080"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000080.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000080.html');return false;">
+          <span class="method-name"> to_doublereal_ptr<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Actual pointer value of the matrix data. Subject to change after a bang (!)
+operation. This is called by the <tt><a
+href="../Lapack.html">Lapack</a></tt> module.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000028.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000028.html');return false;">
+          <span class="method-name">to_f</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>m[0,0]</tt> when <tt>m</tt> is a 1x1 matrix, otherwise a
+<tt>TypeError</tt> is raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000027.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000027.html');return false;">
+          <span class="method-name">to_s</span><span class="method-args">(format = &quot;% 10.6f&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Dump to a readable string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000024.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000024.html');return false;">
+          <span class="method-name">trace</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sum of <a href="DMatrix.html#M000067">diagonal</a> elements.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000094" class="method-detail">
+        <a name="M000094"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000094.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000094.html');return false;">
+          <span class="method-name"> transpose<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Matrix <a href="DMatrix.html#M000094">transpose</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000095" class="method-detail">
+        <a name="M000095"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000095.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000095.html');return false;">
+          <span class="method-name"> transpose!<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place matrix <a href="DMatrix.html#M000094">transpose</a>. Guaranteed
+O(1) trivial cost for <a href="DMatrix.html#M000097">column</a> and <a
+href="DMatrix.html#M000098">row</a> vectors. Note that <a
+href="DMatrix.html#M000094">transpose</a> flags are not implemented; thus
+for non-vectors the cost is a temporary copy and assignment.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000072.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000072.html');return false;">
+          <span class="method-name"> vsize<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Vertical size of the matrix (number of <a
+href="DMatrix.html#M000065">rows</a>)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000096" class="method-detail">
+        <a name="M000096"></a>
+
+        <div class="method-heading">
+          <a href="DMatrix.src/M000096.html" target="Code" class="method-signature"
+            onclick="popupCode('DMatrix.src/M000096.html');return false;">
+          <span class="method-name"> within(epsilon, other)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Test if each matrix element is <a href="DMatrix.html#M000096">within</a>
+<tt>epsilon</tt> of the respective matrix element of <tt>other</tt>.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

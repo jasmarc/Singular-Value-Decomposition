@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Mon Sep 08 18:26:51 -0400 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../classes/Linalg.html">Linalg</a> - Ruby Linear Algebra Library</h1>
+<p>
+A Fortran-based linear algebra package.
+</p>
+<h3>Features</h3>
+<p>
+Major features:
+</p>
+<ul>
+<li>Cholesky decomposition
+
+</li>
+<li>LU decomposition
+
+</li>
+<li>QR decomposition
+
+</li>
+<li>Schur decomposition
+
+</li>
+<li>Singular value decomposition
+
+</li>
+<li>Eigenvalues and eigenvectors of a general matrix
+
+</li>
+<li>Minimization by least squares
+
+</li>
+<li>Linear equation solving
+
+</li>
+<li>Stand-alone LAPACK bindings: call any LAPACK routine from directly from
+ruby.
+
+</li>
+</ul>
+<p>
+Minor features:
+</p>
+<ul>
+<li>Convenient iterators
+
+</li>
+<li>Condition numbers and condition number estimates
+
+</li>
+<li>Nullspace, rank, nullity
+
+</li>
+<li>Inverse
+
+</li>
+<li>Pseudo-inverse
+
+</li>
+<li>Determinant
+
+</li>
+<li>2-norm, 1-norm, infinity-norm, Frobenius norm
+
+</li>
+</ul>
+<h3>Getting Started</h3>
+<p>
+Everything you need to know is in:
+</p>
+<ul>
+<li><a href="../classes/Linalg/DMatrix.html">Linalg::DMatrix</a>
+
+</li>
+<li><a href="../classes/Linalg/Iterators.html">Linalg::Iterators</a>
+
+</li>
+</ul>
+<p>
+and this README.
+</p>
+<h3>Tutorial</h3>
+<pre>
+  $ irb
+  irb(main):000:0&gt; require 'linalg'
+  =&gt; true
+  irb(main):000:0&gt; include Linalg
+  =&gt; Object
+</pre>
+<h4>Construction</h4>
+<pre>
+  irb(main):000:0&gt; DMatrix[[1,2,3], [4,5,6]]
+  =&gt;
+    1.000000  2.000000  3.000000
+    4.000000  5.000000  6.000000
+
+  irb(main):000:0&gt; DMatrix.rows [[1,2,3], [4,5,6]]
+  =&gt;
+    1.000000  2.000000  3.000000
+    4.000000  5.000000  6.000000
+
+  irb(main):000:0&gt; DMatrix.columns [[1,2,3], [4,5,6]]
+  =&gt;
+    1.000000  4.000000
+    2.000000  5.000000
+    3.000000  6.000000
+
+  irb(main):000:0&gt; a = DMatrix.new(3, 3) { |i, j| 10*i + j }
+  =&gt;
+    0.000000  1.000000  2.000000
+   10.000000 11.000000 12.000000
+   20.000000 21.000000 22.000000
+
+  irb(main):000:0&gt; DMatrix.new(3, 3, 99)
+  =&gt;
+   99.000000 99.000000 99.000000
+   99.000000 99.000000 99.000000
+   99.000000 99.000000 99.000000
+
+  irb(main):000:0&gt; DMatrix.diagonal [3,4,5]
+  =&gt;
+    3.000000  0.000000  0.000000
+    0.000000  4.000000  0.000000
+    0.000000  0.000000  5.000000
+
+  irb(main):000:0&gt; DMatrix.diagonal(4) { |i| i*i }
+  =&gt;
+    0.000000  0.000000  0.000000  0.000000
+    0.000000  1.000000  0.000000  0.000000
+    0.000000  0.000000  4.000000  0.000000
+    0.000000  0.000000  0.000000  9.000000
+
+  irb(main):000:0&gt; DMatrix.diagonal(4, 99)
+  =&gt;
+   99.000000  0.000000  0.000000  0.000000
+    0.000000 99.000000  0.000000  0.000000
+    0.000000  0.000000 99.000000  0.000000
+    0.000000  0.000000  0.000000 99.000000
+</pre>
+<h4>Indexing</h4>
+<p>
+Indexing is in (row, column) order. This is the convention for Mathematics
+and Fortran. It is opposite from C convention.
+</p>
+<pre>
+  irb(main):000:0&gt; a
+  =&gt;
+    0.000000  1.000000  2.000000
+   10.000000 11.000000 12.000000
+   20.000000 21.000000 22.000000
+
+  irb(main):000:0&gt; a[1,0]
+  =&gt; 10.0
+  irb(main):000:0&gt; a[2,0]
+  =&gt; 20.0
+  irb(main):000:0&gt; a[0,1]
+  =&gt; 1.0
+  irb(main):000:0&gt; a[0,2]
+  =&gt; 2.0
+</pre>
+<p>
+Index boundaries are strongly enforced
+</p>
+<pre>
+  irb(main):000:0&gt; a[-1,0]
+  IndexError: out of range
+          from (irb):27:in `[]'
+          from (irb):27
+</pre>
+<h4>Enumerables</h4>
+<p>
+There are several abstract <tt>Enumerable</tt>s which you may obtain from a
+matrix: columns, rows, elements, and diagonal elements.
+</p>
+<pre>
+  irb(main):000:0&gt; a
+  =&gt;
+    0.000000  1.000000  2.000000
+   10.000000 11.000000 12.000000
+   20.000000 21.000000 22.000000
+
+  irb(main):000:0&gt; a.columns.class
+  =&gt; Linalg::Iterators::ColumnEnum
+  irb(main):000:0&gt; cols = a.columns.map { |x| x }
+  =&gt; [
+    0.000000
+   10.000000
+   20.000000
+  ,
+    1.000000
+   11.000000
+   21.000000
+  ,
+    2.000000
+   12.000000
+   22.000000
+  ]
+  irb(main):000:0&gt; rows = a.rows.map { |x| x }
+  =&gt; [
+    0.000000  1.000000  2.000000
+  ,
+   10.000000 11.000000 12.000000
+  ,
+   20.000000 21.000000 22.000000
+  ]
+  irb(main):000:0&gt; a.elems.map { |x| x }
+  =&gt; [0.0, 10.0, 20.0, 1.0, 11.0, 21.0, 2.0, 12.0, 22.0]
+  irb(main):003:0&gt; a.elems.find_all { |x| x &gt; 10 }
+  =&gt; [20.0, 11.0, 21.0, 12.0, 22.0]
+  irb(main):008:0&gt; a.diags.map { |x| x }
+  =&gt; [0.0, 11.0, 22.0]
+</pre>
+<p>
+Another method of constructing a matrix is to join rows or columns,
+</p>
+<pre>
+  irb(main):000:0&gt; DMatrix.join_columns [cols[0], cols[2]]
+  =&gt;
+    0.000000  2.000000
+   10.000000 12.000000
+   20.000000 22.000000
+
+  irb(main):000:0&gt; DMatrix.join_rows [rows[0], rows[2]]
+  =&gt;
+    0.000000  1.000000  2.000000
+   20.000000 21.000000 22.000000
+</pre>
+<h4>Enumerable-like Iterators with Index Pairs</h4>
+<p>
+A matrix itself is not <tt>Enumerable</tt>, but a select number of
+<tt>Enumerable</tt>-like methods are provided.
+</p>
+<pre>
+  irb(main):000:0&gt; a
+  =&gt;
+    0.000000  1.000000  2.000000
+   10.000000 11.000000 12.000000
+   20.000000 21.000000 22.000000
+
+  irb(main):000:0&gt; a.each_with_index { |e, i, j| puts &quot;row #{i} column #{j} : #{e}&quot; } ; nil
+  row 0 column 0 : 0.0
+  row 1 column 0 : 10.0
+  row 2 column 0 : 20.0
+  row 0 column 1 : 1.0
+  row 1 column 1 : 11.0
+  row 2 column 1 : 21.0
+  row 0 column 2 : 2.0
+  row 1 column 2 : 12.0
+  row 2 column 2 : 22.0
+  =&gt; nil
+  irb(main):000:0&gt; a.map_with_index { |e, i, j| e*i*j }
+  =&gt;
+    0.000000  0.000000  0.000000
+    0.000000 11.000000 24.000000
+    0.000000 42.000000 88.000000
+
+  irb(main):000:0&gt; a.each_upper_with_index { |e, i, j| puts &quot;a[#{i}, #{j}] : #{e}&quot; } ; nil
+  a[0, 1] : 1.0
+  a[0, 2] : 2.0
+  a[1, 2] : 12.0
+  =&gt; nil
+  irb(main):000:0&gt; a.each_lower_with_index { |e, i, j| puts &quot;a[#{i}, #{j}] : #{e}&quot; } ; nil
+  a[1, 0] : 10.0
+  a[2, 0] : 20.0
+  a[2, 1] : 21.0
+  =&gt; nil
+</pre>
+<h4>Epsilon Comparison</h4>
+<p>
+For good and bad, a default epsilon of <tt>1e-8</tt> is provided for
+comparison, nullspace identification, and symmetric testing.
+</p>
+<p>
+You can change <tt>default_epsilon</tt> class-wide or on a per-object
+basis, or simply pass an explicit epsilon to any of these methods.
+</p>
+<pre>
+  irb(main):000:0&gt; a = DMatrix.rand(3, 3)
+  =&gt;
+   0.824730  0.305527  0.044433
+  -0.582865 -0.351364 -0.752941
+   0.103417 -0.254290  0.216312
+
+  irb(main):000:0&gt; b = a.map { |e| e + 0.000001 }
+  =&gt;
+   0.824731  0.305528  0.044434
+  -0.582864 -0.351363 -0.752940
+   0.103418 -0.254289  0.216313
+
+  irb(main):000:0&gt; a.within(1e-4, b)
+  =&gt; true
+  irb(main):000:0&gt; a.class.default_epsilon
+  =&gt; 1.0e-08
+  irb(main):000:0&gt; a =~ b
+  =&gt; false
+  irb(main):000:0&gt; a.singleton_class.default_epsilon
+  =&gt; nil
+  irb(main):000:0&gt; a.singleton_class.default_epsilon = 0.0001
+  =&gt; 0.0001
+  irb(main):000:0&gt; a =~ b
+  =&gt; true
+  irb(main):000:0&gt; b =~ a
+  =&gt; false
+</pre>
+<p>
+<tt>singleton_class.epsilon</tt> has first preference over
+<tt>class.epsilon</tt>.
+</p>
+<h4>Singular Value Decomposition</h4>
+<p>
+And now the fun stuff <tt> =)</tt>
+</p>
+<pre>
+  irb(main):000:0&gt; a = DMatrix.rand(4, 7) ;
+  irb(main):000:0* u, s, vt = a.singular_value_decomposition
+  =&gt; [
+  -0.747003  0.304315 -0.144972 -0.573029
+  -0.435034 -0.814506  0.381951  0.037926
+   0.207010 -0.490811 -0.777727 -0.333753
+  -0.458125  0.055467 -0.477741  0.747535
+  ,
+   2.186983  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000
+   0.000000  1.719562  0.000000  0.000000  0.000000  0.000000  0.000000
+   0.000000  0.000000  1.474243  0.000000  0.000000  0.000000  0.000000
+   0.000000  0.000000  0.000000  0.676138  0.000000  0.000000  0.000000
+  ,
+   0.276463 -0.345917  0.573929 -0.416910 -0.139648  0.526564  0.062694
+  -0.838456 -0.430716  0.199266  0.170144  0.087954  0.077829  0.170372
+  -0.022382 -0.403705 -0.054483 -0.077530 -0.042506 -0.160232 -0.894461
+  -0.079171  0.476099  0.396614  0.253131  0.573392  0.315335 -0.342737
+   0.034285 -0.212892 -0.265934 -0.537325  0.749204 -0.111692  0.142407
+  -0.377150  0.344083 -0.443538 -0.422834 -0.235075  0.530130 -0.165989
+  -0.265280  0.376113  0.450755 -0.509553 -0.160031 -0.545940 -0.041002
+  ]
+  irb(main):000:0&gt; u*s*vt
+  =&gt;
+  -0.854950  0.241548 -0.975366  0.688628  0.061092 -0.907441  0.310691
+   0.896671  0.717254 -0.845643  0.121186  0.000445 -0.692125 -0.810721
+   0.876331  0.562343  0.064623 -0.300574 -0.218113  0.285261  0.987489
+  -0.381214  0.830467 -0.317184  0.616481  0.468055 -0.247913  0.410178
+
+  irb(main):000:0&gt; a
+  =&gt;
+  -0.854950  0.241548 -0.975366  0.688628  0.061092 -0.907441  0.310691
+   0.896671  0.717254 -0.845643  0.121186  0.000445 -0.692125 -0.810721
+   0.876331  0.562343  0.064623 -0.300574 -0.218113  0.285261  0.987489
+  -0.381214  0.830467 -0.317184  0.616481  0.468055 -0.247913  0.410178
+
+  irb(main):000:0&gt; u*u.t
+  =&gt;
+   1.000000  0.000000 -0.000000  0.000000
+   0.000000  1.000000  0.000000  0.000000
+  -0.000000  0.000000  1.000000  0.000000
+   0.000000  0.000000  0.000000  1.000000
+
+  irb(main):000:0&gt; vt.t*vt
+  =&gt;
+   1.000000  0.000000  0.000000  0.000000  0.000000  0.000000 -0.000000
+   0.000000  1.000000 -0.000000 -0.000000  0.000000 -0.000000  0.000000
+   0.000000 -0.000000  1.000000 -0.000000 -0.000000  0.000000  0.000000
+   0.000000 -0.000000 -0.000000  1.000000 -0.000000 -0.000000  0.000000
+   0.000000  0.000000 -0.000000 -0.000000  1.000000 -0.000000  0.000000
+   0.000000 -0.000000  0.000000 -0.000000 -0.000000  1.000000 -0.000000
+  -0.000000  0.000000  0.000000  0.000000  0.000000 -0.000000  1.000000
+</pre>
+<h4>Eigenvectors and Eigenvalues</h4>
+<pre>
+  irb(main):000:0&gt; a = DMatrix.rand(5, 5)
+  =&gt;
+  -0.319566  0.633985  0.335298 -0.150403  0.758559
+  -0.633389  0.444269  0.375873  0.521107  0.247966
+   0.757654  0.504831  0.160970 -0.241885 -0.949746
+  -0.174517  0.351239 -0.600079 -0.533921  0.851118
+  -0.736717  0.006612 -0.941311 -0.417801  0.555841
+
+  irb(main):000:0&gt; eigs, re, im = a.eigensystem
+  =&gt; [
+  -0.232169 -0.540550 -0.215201 -0.216959  0.036677
+  -0.449048 -0.031420 -0.114366 -0.228818  0.062841
+   0.682632  0.283575  0.019432  0.540907  0.073854
+   0.364843 -0.597905  0.000000 -0.592036  0.000000
+   0.381257 -0.207285 -0.407649 -0.490737 -0.076896
+  ,
+  -1.088525
+  -0.093563
+  -0.093563
+   0.791621
+   0.791621
+  ,
+   0.000000
+   0.604163
+  -0.604163
+   0.158934
+  -0.158934
+  ]
+  irb(main):000:0&gt; a*eigs.column(0)
+  =&gt;
+   0.252722
+   0.488799
+  -0.743062
+  -0.397141
+  -0.415008
+
+  irb(main):000:0&gt; re[0]*eigs.column(0)
+  =&gt;
+   0.252722
+   0.488799
+  -0.743062
+  -0.397141
+  -0.415008
+</pre>
+<h4>QR factorization</h4>
+<pre>
+  irb(main):000:0&gt; a = DMatrix.rand(4, 7) ;
+  irb(main):000:0* q, r = a.qr
+  =&gt; [
+   -0.593983  0.263367 -0.572195 -0.500414
+   -0.486715 -0.780258  0.331047 -0.211458
+   -0.184137 -0.328403 -0.586889  0.716803
+   -0.613503  0.462588  0.467507  0.437109
+  ,
+   -1.180464 -0.295897 -0.478813 -0.300434  0.360094  0.738799 -0.571687
+    0.000000  0.873800 -0.167873  0.612545  0.462280  0.097813 -0.733398
+    0.000000  0.000000  1.659791 -0.439355 -0.234388 -0.063566  0.149709
+    0.000000  0.000000  0.000000 -0.047795  0.805122 -0.158261  0.754104
+  ]
+  irb(main):000:0&gt; q*r
+  =&gt;
+    0.701176  0.405888 -0.709530  0.615091 -0.360919 -0.297505 -0.316607
+    0.574550 -0.537772  0.913498 -0.467057 -0.783803 -0.423482  0.740588
+    0.217367 -0.232473 -0.830816  0.077752  0.496553 -0.244298  0.798800
+    0.724218  0.585743  0.992061  0.241379  0.235274 -0.506903  0.411086
+
+  irb(main):000:0&gt; a
+  =&gt;
+    0.701176  0.405888 -0.709530  0.615091 -0.360919 -0.297505 -0.316607
+    0.574550 -0.537772  0.913498 -0.467057 -0.783803 -0.423482  0.740588
+    0.217367 -0.232473 -0.830816  0.077752  0.496553 -0.244298  0.798800
+    0.724218  0.585743  0.992061  0.241379  0.235274 -0.506903  0.411086
+
+  irb(main):000:0&gt; q.t*q
+  =&gt;
+    1.000000  0.000000 -0.000000 -0.000000
+    0.000000  1.000000  0.000000 -0.000000
+   -0.000000  0.000000  1.000000  0.000000
+   -0.000000 -0.000000  0.000000  1.000000
+</pre>
+<p>
+See the <a href="../classes/Linalg/DMatrix.html">Linalg::DMatrix</a>
+documentation for more info. The various tests in test/ are also
+instructive.
+</p>
+<h3>Download</h3>
+<ul>
+<li><a
+href="http://rubyforge.org/frs/?group_id=273">rubyforge.org/frs/?group_id=273</a>
+
+</li>
+</ul>
+<h3>Repository</h3>
+<ul>
+<li><a href="http://github.com/quix/linalg">github.com/quix/linalg</a>
+
+</li>
+</ul>
+<h3>Notes</h3>
+<p>
+There are four matrix types: <tt>SMatrix</tt>, <tt>DMatrix</tt>,
+<tt>CMatrix</tt>, and <tt>ZMatrix</tt> &#8212; single precision, double
+precision, single precision complex, and double precision complex,
+respectively. They are all available with basic functionality, however the
+more complex routines you see here currently lie only in <tt>DMatrix</tt>.
+</p>
+<p>
+If you have used <tt>narray</tt>, note that <tt>linalg</tt> uses the
+mathematical definition of <em>rank</em>, which is equal to the number of
+columns only in the case of a nonsingular square matrix.
+</p>
+<h3>Details</h3>
+<table>
+<tr><td valign="top">Author:</td><td>James M. Lawrence &lt;quixoticsycophant@gmail.com&gt;
+
+</td></tr>
+<tr><td valign="top">Requires:</td><td>Ruby 1.8.1 or later
+
+</td></tr>
+<tr><td valign="top">License:</td><td>Copyright (c) 2004-2008 James M. Lawrence. Released under the MIT license.
+
+</td></tr>
+</table>
+<h3>License</h3>
+<p>
+Copyright (c) 2004-2008 James M. Lawrence
+</p>
+<p>
+If <tt>linalg</tt> begins to smoke, get away immediately. Seek shelter and
+cover head.
+</p>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+</p>
+<p>
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+</p>
+<p>
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

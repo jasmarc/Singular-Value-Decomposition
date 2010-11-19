@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_load (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: _load
+ *
+ * For Marshal.  Uses native data format.
+ *
+ */
+VALUE rb_dmatrix_s_marshal_load(VALUE klass, VALUE str)
+{
+    DMatrix* a ;
+    integer vsize ;
+    integer hsize ;
+    char* p = (char*)RSTRING(str)-&gt;ptr ;
+
+    vsize = *((integer*)p) ;
+    p += sizeof(integer) ;
+
+    hsize = *((integer*)p) ;
+    p += sizeof(integer) ;
+
+    p += 40*sizeof(char) ;
+
+    a = DMatrix_new(vsize, hsize) ;
+    memcpy((void*)a-&gt;data, (void*)p, vsize*hsize*sizeof(doublereal)) ;
+
+    return wrap_dmatrix(a) ;
+}</pre>
+</body>
+</html>

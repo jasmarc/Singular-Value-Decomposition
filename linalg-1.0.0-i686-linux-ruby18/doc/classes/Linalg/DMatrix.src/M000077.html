@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_a (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: to_a
+ *
+ * Create an array from the matrix
+ *
+ *   a = m.to_a
+ *
+ * is equivalent to
+ *
+ *   a = Array.new(m.vsize) { Array.new(m.hsize) }
+ *   m.each_index { |i,j|
+ *      a[i][j] = m[i,j]
+ *   }
+ *
+ */
+VALUE rb_dmatrix_to_a(VALUE self)
+{
+    int i ;
+    int j ;
+    VALUE arr ;
+    VALUE row ;
+    DMatrix* a ;
+    get_dmatrix(a, self) ;
+
+    arr = rb_ary_new2(a-&gt;vsize) ;
+
+    for( i = 0 ; i != a-&gt;vsize ; ++i )
+    {
+        row = rb_ary_new2(a-&gt;hsize) ;
+
+        for( j = 0 ; j != a-&gt;hsize ; ++j )
+        {
+            rb_ary_store(row,
+                         j,
+                         rb_float_new(a-&gt;data[i + j*a-&gt;vsize])) ;
+        }
+
+        rb_ary_store(arr, i, row) ;
+    }
+
+    return arr ;
+}</pre>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>[]= (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ *
+ * call-seq: []=(row, column)
+ *
+ * Element write.  Column vectors are permitted to omit the +column+ index.
+ *
+ */
+VALUE rb_dmatrix_bracket_set(int argc, VALUE* argv, VALUE self)
+{
+    DMatrix* a ;
+    int i = 0 ;
+    int j = 0 ;
+    VALUE ri ;
+    VALUE rj ;
+    VALUE rv ;
+
+    get_dmatrix(a, self) ;
+
+    if( rb_scan_args(argc, argv, &quot;21&quot;, &amp;ri, &amp;rj, &amp;rv) == 2 )
+    {
+        rv = rj ;
+
+        if( a-&gt;hsize == 1 )
+        {
+            i = NUM2INT(ri) ; 
+            j = 0 ;
+        }
+        else
+        {
+            raise_index_error() ;
+        }
+    }
+    else
+    {
+        i = NUM2INT(ri) ;
+        j = NUM2INT(rj) ;
+    }
+
+    if( i &lt; 0 || i &gt;= a-&gt;vsize ||
+        j &lt; 0 || j &gt;= a-&gt;hsize )
+    {
+        raise_index_error() ;
+    }
+
+    a-&gt;data[i + j*a-&gt;vsize] = NUM2DBL(rv) ;
+    return rv ;
+}</pre>
+</body>
+</html>

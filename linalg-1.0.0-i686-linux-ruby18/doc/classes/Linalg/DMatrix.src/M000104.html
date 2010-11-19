@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>symmetric! (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq:
+ *   symmetric!
+ *
+ * Force the matrix to be symmetric, reflecting the upper triangle
+ * onto the lower triangle.
+ *
+ */
+VALUE rb_dmatrix_make_symmetric( VALUE self )
+{
+    DMatrix* a ;
+    get_dmatrix(a, self) ;
+    
+    if( a-&gt;vsize != a-&gt;hsize )
+    {
+        raise_dim_error() ;
+    }
+
+    {
+        int i ;
+        int j ;
+
+        for( j = 0 ; j &lt; a-&gt;hsize ; ++j )
+        {
+            for( i = j + 1 ; i &lt; a-&gt;vsize ; ++i )
+            {
+                a-&gt;data[i + j*a-&gt;vsize] = a-&gt;data[j + i*a-&gt;vsize] ;
+            }
+        }
+    }
+    
+    return self ;
+}</pre>
+</body>
+</html>

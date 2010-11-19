@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transpose! (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: transpose!
+ *
+ * In-place matrix transpose.  Guaranteed O(1) trivial cost for column
+ * and row vectors.  Note that transpose flags are not implemented;
+ * thus for non-vectors the cost is a temporary copy and assignment.
+ *
+ */
+VALUE rb_dmatrix_transpose_inplace( VALUE self )
+{
+    DMatrix* a ;
+    get_dmatrix(a, self) ;
+    DMatrix_transpose_inplace(a) ;
+    return self ;
+}</pre>
+</body>
+</html>

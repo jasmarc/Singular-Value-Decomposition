@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>minus! (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: minus!(b)
+ *
+ * In-place matrix subtraction.
+ *
+ *   c = a - b
+ *
+ * is equivalent to
+ *
+ *   c = a.minus!(b)
+ *
+ * with
+ *
+ *   a.object_id == c.object_id
+ *
+ */
+VALUE rb_dmatrix_minus_inplace(VALUE self, VALUE rb)
+{
+    DMatrix* a ;
+    DMatrix* b ;
+    get_dmatrix(a, self) ;
+    get_dmatrix(b, rb) ;
+
+    if( a-&gt;vsize != b-&gt;vsize ||
+        a-&gt;hsize != b-&gt;hsize)
+    {
+        raise_dim_error() ;
+    }
+
+    DMatrix_minus(a, b) ;
+    return self ;
+}</pre>
+</body>
+</html>

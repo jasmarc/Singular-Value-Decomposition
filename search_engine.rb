@@ -4,7 +4,6 @@ require "linalg"
 require "pp"
 require "array_hacks.rb"
 require "string_hacks.rb"
-require "ruby-prof"
 
 class SearchEngine
   attr_reader :word_list

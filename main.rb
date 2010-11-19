@@ -1,8 +1,6 @@
 require "rubygems"
-require "ruby-prof"
 require "search_engine.rb"
 require "search_engine"
-require 'ruby-growl'
 
 search_engine = SearchEngine.new('./test/file*','stoplist.txt')
 

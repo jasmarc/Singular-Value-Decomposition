@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>rand (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: rand(vsize, hsize)
+ *
+ * Create a matrix filled with random numbers between -1.0 and 1.0.
+ *
+ * Similar to
+ *
+ *   DMatrix.new(vsize, hsize) { 2*rand - 1 }
+ *
+ * except uses &lt;tt&gt;rand()&lt;/tt&gt; from &lt;tt&gt;stdlib.h&lt;/tt&gt;
+ *
+ */
+VALUE rb_dmatrix_s_rand(VALUE klass, VALUE rvsize, VALUE rhsize)
+{
+    DMatrix* a = DMatrix_new(num2size(rvsize),
+                                   num2size(rhsize)) ;
+
+    static int first = 1 ;
+    if( first )
+    {
+        srand(time(NULL)) ;
+        first = 0 ;
+    }
+    
+    DMatrix_rand(a) ;
+    return wrap_dmatrix(a) ;
+}</pre>
+</body>
+</html>

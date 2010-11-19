@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>rows (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: rows(array)
+ *
+ * Create a matrix using the elements of +array+ as rows.
+ *
+ *   DMatrix.rows(array)
+ *
+ * is equivalent to
+ *
+ *   DMatrix.new(array.size, array[0].size) { |i,j| array[i][j] }
+ *
+ * +DimensionError+ is raised if +array+ is not rectangular.
+ *
+ */
+VALUE rb_dmatrix_s_rows( VALUE klass, VALUE array )
+{
+    int i ;
+    int j ;
+    int vsize ;
+    int hsize ;
+
+    VALUE* ptr ;
+    VALUE crow ;
+
+    DMatrix* a = 0 ;
+    VALUE ra ;
+
+    if( TYPE(array) != T_ARRAY )
+    {
+        raise_bad_array() ;
+    }
+
+    ptr = RARRAY(array)-&gt;ptr ;
+    vsize = RARRAY(array)-&gt;len ;
+
+    if( vsize &lt; 1 || TYPE(ptr[0]) != T_ARRAY )
+    {
+        raise_bad_array() ;
+    }
+    if( (hsize = RARRAY(ptr[0])-&gt;len) == 0 )
+    {
+        raise_bad_array() ;
+    }
+    
+    a = DMatrix_new(vsize, hsize) ;
+    ra = wrap_dmatrix(a) ;
+    
+    for( i = 0 ; i != vsize ; ++i )
+    {
+        crow = ptr[i] ;
+
+        if( TYPE(crow) != T_ARRAY )
+        {
+            raise_bad_array() ;
+        }
+
+        if( RARRAY(crow)-&gt;len != hsize )
+        {
+            raise_bad_array() ;
+        }
+
+        for( j = 0 ; j != hsize ; j++ )
+        {
+            a-&gt;data[i + j*a-&gt;vsize] = NUM2DBL(RARRAY(crow)-&gt;ptr[j]) ;
+        }
+    }
+
+    return ra ;
+}</pre>
+</body>
+</html>

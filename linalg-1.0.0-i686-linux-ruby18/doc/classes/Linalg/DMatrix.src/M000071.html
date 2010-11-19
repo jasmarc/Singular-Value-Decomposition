@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq:
+ *   new(vsize, hsize)
+ *   new(vsize, hsize, scalar)
+ *   new(vsize, hsize) { |i, j| ... }
+ *
+ * Returns a new matrix with dimensions [+vsize+, +hsize+].
+ *
+ * In the first form, the matrix is filled with zero.  In the second
+ * form, the matrix is filled with +scalar+.  In the third form, each
+ * index pair is passed to the block and the respective matrix element
+ * is assigned the block result.
+ *
+ *   DMatrix.new(4,4) { |i,j| i == j ? 1 : 0 }
+ *
+ * is the 4 x 4 identity matrix.
+ *
+ */
+VALUE rb_dmatrix_initialize(int argc, VALUE* argv, VALUE self)
+{
+    DMatrix* a ;
+    VALUE rvsize ;
+    VALUE rhsize ;
+    VALUE rscalar ;
+    
+    int scan = rb_scan_args(argc, argv, &quot;21&quot;, &amp;rvsize, &amp;rhsize, &amp;rscalar) ;
+
+    get_dmatrix(a, self) ;
+    DMatrix_init(a, num2size(rvsize), num2size(rhsize)) ;
+
+    if( scan == 3 )
+    {
+        DMatrix_fill(a, NUM2DBL(rscalar)) ;
+    }
+    else if( rb_block_given_p() == Qtrue )
+    {
+        int i ;
+        int j ;
+
+        for( j = 0 ; j != a-&gt;hsize ; ++j )
+        {
+            for( i = 0 ; i != a-&gt;vsize ; ++i )
+            {
+                VALUE pair = rb_assoc_new(INT2FIX(i),
+                                          INT2FIX(j)) ;
+                a-&gt;data[i + j*a-&gt;vsize] = NUM2DBL(rb_yield(pair)) ;
+            }
+        }
+    }
+    else
+    {
+        DMatrix_fill(a, dmatrix_doublereal_0) ;
+    }
+
+    return self ;
+}</pre>
+</body>
+</html>

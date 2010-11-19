@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_dump (Linalg::DMatrix)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: _dump
+ *
+ * For Marshal.  Uses native data format.
+ *
+ */
+VALUE rb_dmatrix_marshal_dump(VALUE self, VALUE depth)
+{
+    /*
+     * format:
+     *   sizeof(integer)                  vsize  
+     *   sizeof(integer)                  hsize
+     *   40*sizeof(char)                  reserved
+     *   vsize*hsize*sizeof(doublereal)   data
+     */
+
+    DMatrix* a ;
+    VALUE str ;
+    char reserved[40] = { 0 } ;
+    
+    get_dmatrix(a, self) ;
+    
+    str = rb_str_buf_new(1*sizeof(integer) +
+                         1*sizeof(integer) +
+                         40*sizeof(char) +
+                         a-&gt;vsize*a-&gt;hsize*sizeof(doublereal)) ;
+
+    rb_str_buf_cat(str, (const char*)(&amp;a-&gt;vsize), 1*sizeof(integer)) ;
+    rb_str_buf_cat(str, (const char*)(&amp;a-&gt;hsize), 1*sizeof(integer)) ;
+    rb_str_buf_cat(str, (const char*)(reserved), 40*sizeof(char)) ;
+    rb_str_buf_cat(str, (const char*)(a-&gt;data),
+                   a-&gt;vsize*a-&gt;hsize*sizeof(doublereal)) ;
+    return str ;
+}</pre>
+</body>
+</html>

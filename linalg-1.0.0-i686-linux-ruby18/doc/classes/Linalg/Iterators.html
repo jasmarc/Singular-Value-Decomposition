@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Linalg::Iterators</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Linalg::Iterators</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/linalg/iterators_rb.html">
+                lib/linalg/iterators.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<tt>Enumerable</tt>s and <tt>Enumerable</tt>-like methods for matrices.
+</p>
+<p>
+For blocks which yield <tt>i,j</tt> indexes, the visitation is always in
+column-major order &#8212; that is, <tt>i</tt> changes faster than
+<tt>j</tt>.
+</p>
+<p>
+To visit in row-major order, one would say
+</p>
+<pre>
+  m.rows.each_with_index { |row, i|
+     row.elems.each_with_index { |e, j|
+        # e == m[i,j]
+     }
+  }
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000002">columns</a>&nbsp;&nbsp;
+      <a href="#M000004">diags</a>&nbsp;&nbsp;
+      <a href="#M000006">each_index</a>&nbsp;&nbsp;
+      <a href="#M000011">each_lower_with_index</a>&nbsp;&nbsp;
+      <a href="#M000012">each_upper_with_index</a>&nbsp;&nbsp;
+      <a href="#M000005">each_with_index</a>&nbsp;&nbsp;
+      <a href="#M000003">elems</a>&nbsp;&nbsp;
+      <a href="#M000007">map</a>&nbsp;&nbsp;
+      <a href="#M000009">map!</a>&nbsp;&nbsp;
+      <a href="#M000008">map_with_index</a>&nbsp;&nbsp;
+      <a href="#M000010">map_with_index!</a>&nbsp;&nbsp;
+      <a href="#M000001">rows</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Iterators/ColumnEnum.html" class="link">Linalg::Iterators::ColumnEnum</a><br />
+Class <a href="Iterators/DiagEnum.html" class="link">Linalg::Iterators::DiagEnum</a><br />
+Class <a href="Iterators/ElemEnum.html" class="link">Linalg::Iterators::ElemEnum</a><br />
+Class <a href="Iterators/MatrixEnum.html" class="link">Linalg::Iterators::MatrixEnum</a><br />
+Class <a href="Iterators/RowEnum.html" class="link">Linalg::Iterators::RowEnum</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000002.html');return false;">
+          <span class="method-name">columns</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an <tt>Enumerable</tt> of the <a
+href="Iterators.html#M000002">columns</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000004.html');return false;">
+          <span class="method-name">diags</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an <tt>Enumerable</tt> of the diagonal elements
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000006.html');return false;">
+          <span class="method-name">each_index</span><span class="method-args">() {|i, j| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Like <tt>Array#each_index</tt>, but with an index pair
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000011.html');return false;">
+          <span class="method-name">each_lower_with_index</span><span class="method-args">( {|e, i, j| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Visit below-diagonal elements, with index pair
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000012.html');return false;">
+          <span class="method-name">each_upper_with_index</span><span class="method-args">( {|e, i, j| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Visit above-diagonal elements, with index pair
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000005.html');return false;">
+          <span class="method-name">each_with_index</span><span class="method-args">( {|e, i, j| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Like <tt>Enumerable#each_with_index</tt>, but with an index pair
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000003.html');return false;">
+          <span class="method-name">elems</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an <tt>Enumerable</tt> of the matrix elements
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000007.html');return false;">
+          <span class="method-name">map</span><span class="method-args">( {|e| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Like <tt>Enumerable#map</tt>, but the resultant is a another matrix
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000009.html');return false;">
+          <span class="method-name">map!</span><span class="method-args">( {|e| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place <tt><a href="Iterators.html#M000007">map</a></tt>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000008.html');return false;">
+          <span class="method-name">map_with_index</span><span class="method-args">( {|e, i, j| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<tt><a href="Iterators.html#M000007">map</a></tt> with an index pair
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000010.html');return false;">
+          <span class="method-name">map_with_index!</span><span class="method-args">( {|e, i, j| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+In-place <tt><a href="Iterators.html#M000008">map_with_index</a></tt>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Iterators.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Iterators.src/M000001.html');return false;">
+          <span class="method-name">rows</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an <tt>Enumerable</tt> of the <a
+href="Iterators.html#M000001">rows</a>
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
