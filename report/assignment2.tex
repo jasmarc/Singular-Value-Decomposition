@@ -154,7 +154,6 @@ In the above listing we see each user vector and their corresponding result afte
 \label{sec:a_search_engine_that_indexes_full_text_using_latent_semantic_indexing}
 For this part, I created a term-document matrix consisting of the tf.idf scores of each word. I then performed singular value decomposition, keeping the top two singular values and recomputed by matrix as $C_k$. Then, for the given query, I create a query vector. The query vector is a very long, sparse vector that is mostly zero's, but contains one's in the slots where the words form the query correspond to the entries. In order to score each document, I take the inner product of the query vector with the column vector corresponding to each document. I then sort the documents by score and return the top three (if available). If no documents scored greater than zero then nothing is returned.
 
-\emph{\textbf{NOTE!}} In order to get this part to work \emph{reasonably} I had to vastly decrease the corpus. I limited my corpus to only 6 files and I truncated the length of the files in half. As it is, the indexing takes a while, but with the full 30-document corpus it is unreasonably slow.
 % section a_search_engine_that_indexes_full_text_using_latent_semantic_indexing (end)
 \section{Instructions for Running} % (fold)
 \label{sec:instructions_for_running}

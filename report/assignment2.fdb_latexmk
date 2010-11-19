@@ -1,7 +1,7 @@
 # Fdb version 2
 ["latex"] 0 "assignment2.tex" "assignment2.dvi" "assignment2" 
   "assignment2.tex" 1286602205 1698 ccc5198d23dac4c4dee053cec4e34f98 ""
-["pdflatex"] 1286645880 "assignment2.tex" "assignment2.pdf" "assignment2" 
+["pdflatex"] 1290127024 "assignment2.tex" "assignment2.pdf" "assignment2" 
   "/opt/local/share/texmf-dist/tex/latex/base/article.cls" 1079230793 20545 af5f10c7588e0dedb430b7e03bb2007b ""
   "/opt/local/share/texmf-dist/tex/latex/base/omscmr.fd" 1079230793 2092 9bd5bd4a77246de611ad664f26875a49 ""
   "/opt/local/share/texmf-dist/tex/latex/base/size12.clo" 1079230793 9026 3acc06550fef2fb923fbf78a377bbd97 ""
@@ -21,6 +21,6 @@
   "/opt/local/share/texmf-dist/tex/latex/psnfss/upsy.fd" 991679074 148 2da0acd77cba348f34823f44cabf0058 ""
   "/opt/local/share/texmf-dist/tex/latex/psnfss/upzd.fd" 991679062 148 b2a94082cb802f90d3daf6dd0c7188a0 ""
   "/opt/local/share/texmf-dist/tex/latex/url/url.sty" 1081048200 20534 ffc6c7ba90c3adf8284efd511c00ed6b ""
-  "assignment2.aux" 1286645880 2573 5043da20f4dee525d6c3f071ffa8b447 ""
-  "assignment2.out" 1286645880 693 8ac6c65d6e01ddbdb68dff246b705811 ""
-  "assignment2.tex" 1286645877 8609 5902fcc2572e0a08e7a4a75528271ddf ""
+  "assignment2.aux" 1290127025 2573 5043da20f4dee525d6c3f071ffa8b447 ""
+  "assignment2.out" 1290127025 693 8ac6c65d6e01ddbdb68dff246b705811 ""
+  "assignment2.tex" 1290127014 8313 ac69fe96cff7c98ef3ed58d5d408d19f ""

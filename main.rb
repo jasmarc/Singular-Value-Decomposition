@@ -4,7 +4,7 @@ require "search_engine.rb"
 require "search_engine"
 require 'ruby-growl'
 
-search_engine = SearchEngine.new('./test2/file*','stoplist.txt')
+search_engine = SearchEngine.new('./test/file*','stoplist.txt')
 
 ARGF.each do |line|
   words = line.split
